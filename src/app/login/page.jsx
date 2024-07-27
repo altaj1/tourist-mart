@@ -1,6 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { FaFacebook } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { FaApple } from "react-icons/fa6";
 
 const page = () => {
   return (
@@ -50,13 +52,35 @@ const page = () => {
               />
             </div>
           </form>
-          <p className="text-sm mt-10">Or, login with</p>
-          <div>
-            <button className="w-96 mt-2 bg-[#8dbe3f] py-2 rounded-sm text-center flex items-center justify-center gap-4 font-bold">
-              <span className="text-2xl  text-[#0866FF] bg-white rounded-full">
-                <FaFacebook />
-              </span>
-              Facebook
+          <div className="flex items-center justify-between mt-4">
+            <hr className="flex-grow border-t-2 border-gray-300" />
+            <span className="px-2 text-sm ">
+              Or, continue with
+            </span>
+            <hr className="flex-grow border-t-2 border-gray-300" />
+          </div>
+
+          <div className="flex gap-8 items-center justify-center mt-10">
+            <button className="">
+              <p className="bg-white rounded-full overflow-hidden">
+                <span className="text-4xl  text-[#0866FF] overflow-hidden hover:shadow-lg ">
+                <FcGoogle />
+                </span>
+              </p>
+            </button>
+            <button className="">
+              <p className="bg-white rounded-full overflow-hidden">
+                <span className="text-4xl  text-[#0866FF] overflow-hidden hover:shadow-lg ">
+                  <FaFacebook />
+                </span>
+              </p>
+            </button>
+            <button className="">
+              <p className="bg-[#DDDDDD] rounded-full overflow-hidden">
+                <span className="text-4xl  text-[#333333] overflow-hidden hover:shadow-lg ">
+                  <FaApple />
+                </span>
+              </p>
             </button>
           </div>
         </div>
