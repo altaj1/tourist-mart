@@ -11,7 +11,7 @@ const Navbar = () => {
     <div className="bg-[#232F3E] text-yellow-50">
       {/* first navbar */}
       <div className="navbar container mx-auto">
-      <div className="  px-4 py-2 flex navbar-start ">
+      <div className="   flex navbar-start ">
         {/* hambarger manue */}
         <div className="dropdown bg-[#232F3E]">
           <div
@@ -94,13 +94,13 @@ const Navbar = () => {
       
 {/* secoend nabbar */}
       <div className="bg-[#131921] py-2 border-b border-gray-700">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center lg:gap-10 md:gap-10 justify-between">
           <div>
             <Link href={"/"} className="text-3xl font-bold">
               TouristMart
             </Link>
           </div>
-          <div className="w-full md:w-[55%] mt-2 md:mt-0">
+          <div className="lg:w-full md:w-[55%] mt-2 md:mt-0">
             <Search />
           </div>
           <div className="flex items-center space-x-4">
