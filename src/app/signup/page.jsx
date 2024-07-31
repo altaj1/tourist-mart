@@ -1,11 +1,16 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
+
+import useAxiosCommon from '@/lib/hooks/apiHooks/useAxiosCommon';
 import Link from 'next/link';
 import React from 'react';
 import { FaApple, FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 
 const page = () => {
-  const handelSignUp = (e)=>{
+  const axiosCommon = useAxiosCommon()
+  console.log(axiosCommon)
+  const handelSignUp = async (e)=>{
     e.preventDefault();
     const newUser = {
       name: e.target.name.value,
