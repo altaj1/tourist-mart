@@ -2,14 +2,35 @@
 'use client'
 
 import useAxiosCommon from '@/lib/hooks/apiHooks/useAxiosCommon';
+import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { FaApple, FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 
 const page = () => {
+  const router = useRouter();
   const axiosCommon = useAxiosCommon()
-  console.log(axiosCommon)
+  // console.log(axiosCommon)
+  const {mutateAsync}= useMutation({
+    mutationFn:async (userData) =>{
+      const {data} = await axiosCommon.post('/signup/api', userData)
+      return data
+    }
+  },
+{
+  onSuccess:()=>{
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Sign Up Successgully",
+      showConfirmButton: false,
+      timer: 1500
+    });
+  }
+  
+})
   const handelSignUp = async (e)=>{
     e.preventDefault();
     const newUser = {
@@ -17,7 +38,9 @@ const page = () => {
       email: e.target.email.value,
       password: e.target.password.value,
     }
-    console.log(newUser)
+    mutateAsync(newUser)
+    router.push('/')
+    // console.log(newUser)
   }
     return (
         <div className="relative h-[90vh]">
