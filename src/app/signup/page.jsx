@@ -8,29 +8,51 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { FaApple, FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+import Swal from 'sweetalert2';
 
 const page = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const axiosCommon = useAxiosCommon()
   // console.log(axiosCommon)
-  const {mutateAsync}= useMutation({
-    mutationFn:async (userData) =>{
-      const {data} = await axiosCommon.post('/signup/api', userData)
-      return data
-    }
+  const {mutateAsync}= useMutation(
+    {
+    mutationFn: async (userData) => {
+      const { data } = await axiosCommon.post('/signup/api', userData);
+      return data;
+    },
+    onSuccess:()=>{
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Sign Up Successgully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        },
+        onError:()=>{
+          Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "You're Already Have An Account",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        },
+        
   },
-{
-  onSuccess:()=>{
-    Swal.fire({
-      position: "top-end",
-      icon: "success",
-      title: "Sign Up Successgully",
-      showConfirmButton: false,
-      timer: 1500
-    });
-  }
+// {
+//   onSuccess:()=>{
+//     Swal.fire({
+//       position: "top-end",
+//       icon: "success",
+//       title: "Sign Up Successgully",
+//       showConfirmButton: false,
+//       timer: 1500
+//     });
+//   }
   
-})
+// }
+)
   const handelSignUp = async (e)=>{
     e.preventDefault();
     const newUser = {
@@ -38,8 +60,8 @@ const page = () => {
       email: e.target.email.value,
       password: e.target.password.value,
     }
-    mutateAsync(newUser)
-    router.push('/')
+   await mutateAsync(newUser)
+    // router.push('/')
     // console.log(newUser)
   }
     return (
@@ -57,8 +79,8 @@ const page = () => {
         </div>
         <div className="bg-slate-50 bg-opacity-30 p-10 rounded-sm mt-16 shadow-lg">
           <form className="space-y-4" onSubmit={handelSignUp}>
-            <div className="flex flex-col">
-              <label className="font-semibold" htmlFor="">
+            <div className="flex flex-col text-gray-800">
+              <label className="font-semibold text-yellow-50" htmlFor="">
                 Name*
               </label>
               <input
@@ -70,7 +92,7 @@ const page = () => {
               />
             </div>
             <div className="flex flex-col">
-              <label className="font-semibold" htmlFor="">
+              <label className="font-semibold text-yellow-50" htmlFor="">
                 Email*
               </label>
               <input
@@ -82,7 +104,7 @@ const page = () => {
               />
             </div>
             <div className="flex flex-col">
-              <label className="font-semibold" htmlFor="">
+              <label className="font-semibold text-yellow-50" htmlFor="">
                 Password*
               </label>
               <input

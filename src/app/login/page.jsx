@@ -1,10 +1,20 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+"use client";
 import Link from "next/link";
 import React from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa6";
+import { useRouter, useSearchParams } from "next/navigation";
+import {useSession} from 'next-auth/react'
+
 
 const page = () => {
+  // const router = useRouter();
+  // const session = useSession();
+  // const searchParams = useSearchParams();
+  // const path = searchParams.get("redirect");
+
   return (
     <div className="relative h-[90vh]">
       <div className="absolute inset-0 bg-[url('/images/login.jpg')] bg-cover bg-center"></div>
