@@ -40,18 +40,6 @@ const page = () => {
         },
         
   },
-// {
-//   onSuccess:()=>{
-//     Swal.fire({
-//       position: "top-end",
-//       icon: "success",
-//       title: "Sign Up Successgully",
-//       showConfirmButton: false,
-//       timer: 1500
-//     });
-//   }
-  
-// }
 )
   const handelSignUp = async (e)=>{
     e.preventDefault();
@@ -87,7 +75,7 @@ const page = () => {
                 required
                 type="text"
                 name="name"
-                className="w-96 py-2 pl-4 rounded-sm focus:outline-[#8dbe3f]"
+                className="w-96 py-2 pl-4 rounded-sm focus:outline-[#8dbe3f] text-gray-800"
                 placeholder="Enter your name"
               />
             </div>
@@ -99,7 +87,7 @@ const page = () => {
                 required
                 type="email"
                 name="email"
-                className="w-96 py-2 pl-4 rounded-sm focus:outline-[#8dbe3f]"
+                className="w-96 py-2 pl-4 rounded-sm focus:outline-[#8dbe3f] text-gray-800"
                 placeholder="Enter your email"
               />
             </div>

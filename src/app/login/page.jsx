@@ -6,15 +6,26 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa6";
 import { useRouter, useSearchParams } from "next/navigation";
-import {useSession} from 'next-auth/react'
+import {signIn, useSession} from 'next-auth/react'
 
 
 const page = () => {
-  // const router = useRouter();
-  // const session = useSession();
-  // const searchParams = useSearchParams();
-  // const path = searchParams.get("redirect");
-
+  const router = useRouter();
+  const session = useSession();
+  const searchParams = useSearchParams();
+  const path = searchParams.get("redirect");
+  const handelLogin = async (event)=>{
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    const resp = await signIn("credentials", {
+      email,
+      password,
+      redirect:true,
+      callbackUrl:path ? path : "/"
+    })
+    console.log(resp, "this is user response")
+  }
   return (
     <div className="relative h-[90vh]">
       <div className="absolute inset-0 bg-[url('/images/login.jpg')] bg-cover bg-center"></div>
@@ -38,7 +49,7 @@ const page = () => {
                 required
                 type="email"
                 name="email"
-                className="w-96 py-2 pl-4 rounded-sm focus:outline-[#8dbe3f]"
+                className="w-96 py-2 pl-4 text-gray-800 rounded-sm focus:outline-[#8dbe3f]"
                 placeholder="Enter your email"
               />
             </div>
@@ -50,13 +61,13 @@ const page = () => {
                 required
                 type="password"
                 name="password"
-                className="w-96 py-2 pl-4 rounded-sm focus:outline-[#8dbe3f]"
+                className="w-96 py-2 pl-4 rounded-sm text-gray-800 focus:outline-[#8dbe3f]"
                 placeholder="Enter your password"
               />
             </div>
             <div>
               <input
-                type="subme"
+                type="submit"
                 className="w-96 mt-2 bg-[#8dbe3f] py-2 rounded-sm text-center font-bold"
                 value={"Login"}
               />
