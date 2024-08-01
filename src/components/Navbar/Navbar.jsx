@@ -6,7 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaAngleDown } from "react-icons/fa";
 import Search from "./Search";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 const Navbar = () => {
   const session = useSession()
   console.log(session)
@@ -120,30 +120,5 @@ const Navbar = () => {
     </div>
   );
 };
-const navItems = [
-  {
-    title: "Home",
-    path: "/",
-  },
-  {
-    title: "About",
-    path: "/about",
-  },
-  {
-    title: "Services",
-    path: "/services",
-  },
-  {
-    title: "MyBookings",
-    path: "/my-bookings",
-  },
-  {
-    title: "Blog",
-    path: "/blog",
-  },
-  {
-    title: "Contacts",
-    path: "/contacts",
-  },
-];
+
 export default Navbar;

@@ -1,6 +1,8 @@
 import { connectDB } from "@/lib/connectDB";
 import NextAuth from "next-auth/next";
+import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from 'next-auth/providers/credentials'
+import FacebookProvider from "next-auth/providers/facebook";
 import bcrypt from "bcrypt";
 
 const handler = NextAuth({
@@ -36,17 +38,41 @@ const handler = NextAuth({
                 return currentUser
             },
             
-        })
+        }),
+        GoogleProvider({
+            clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+            clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
+          }),
+          FacebookProvider({
+            clientId: process.env.NEXT_PUBLIC_FCEBOOK_APP_ID,
+            clientSecret: process.env.NEXT_PUBLIC_FCEBOOK_APP_SECRETE
+          })
     ],
       callbacks:{
-
+        async signIn({user, account}){
+            if (account.provider ==="google" || account.provider ==="facebook") {
+                const {name, email} = user;
+                try {
+                    const db = await connectDB();
+                    const usersCollection = await db.collection("users");
+                    const isUserExist = await usersCollection.findOne({email});
+                    if (!isUserExist) {
+                        const res = await usersCollection.insertOne({...user, role:"user"});
+                        return user;
+                    }
+                    else{
+                        return user
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }
     },
     pages:{
         signIn:"login"
     }
-    // pages:{
-    //     signIn:'/login'
-    // },
+   
   
 })
 export {handler as GET, handler as POST};

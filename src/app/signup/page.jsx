@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 
+import SocialSignin from '@/components/shared/SocialSignin';
 import useAxiosCommon from '@/lib/hooks/apiHooks/useAxiosCommon';
 import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
@@ -111,37 +112,15 @@ const page = () => {
               />
             </div>
           </form>
-          {/* <div className="flex items-center justify-between mt-4">
+          <div className="flex items-center justify-between mt-4">
             <hr className="flex-grow border-t-2 border-gray-300" />
             <span className="px-2 text-sm ">
               Or, continue with
             </span>
             <hr className="flex-grow border-t-2 border-gray-300" />
           </div>
-
-          <div className="flex gap-8 items-center justify-center mt-10">
-            <button className="">
-              <p className="bg-white rounded-full overflow-hidden">
-                <span className="text-4xl  text-[#0866FF] overflow-hidden hover:shadow-lg ">
-                <FcGoogle />
-                </span>
-              </p>
-            </button>
-            <button className="">
-              <p className="bg-white rounded-full overflow-hidden">
-                <span className="text-4xl  text-[#0866FF] overflow-hidden hover:shadow-lg ">
-                  <FaFacebook />
-                </span>
-              </p>
-            </button>
-            <button className="">
-              <p className="bg-[#DDDDDD] rounded-full overflow-hidden">
-                <span className="text-4xl  text-[#333333] overflow-hidden hover:shadow-lg ">
-                  <FaApple />
-                </span>
-              </p>
-            </button>
-          </div> */}
+          <SocialSignin></SocialSignin>
+         
         </div>
       </div>
     </div>

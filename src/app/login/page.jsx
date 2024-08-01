@@ -7,6 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa6";
 import { useRouter, useSearchParams } from "next/navigation";
 import {signIn, useSession} from 'next-auth/react'
+import SocialSignin from "@/components/shared/SocialSignin";
 
 
 const page = () => {
@@ -83,29 +84,7 @@ const page = () => {
             <hr className="flex-grow border-t-2 border-gray-300" />
           </div>
 
-          <div className="flex gap-8 items-center justify-center mt-10">
-            <button className="">
-              <p className="bg-white rounded-full overflow-hidden">
-                <span className="text-4xl  text-[#0866FF] overflow-hidden hover:shadow-lg ">
-                <FcGoogle />
-                </span>
-              </p>
-            </button>
-            <button className="">
-              <p className="bg-white rounded-full overflow-hidden">
-                <span className="text-4xl  text-[#0866FF] overflow-hidden hover:shadow-lg ">
-                  <FaFacebook />
-                </span>
-              </p>
-            </button>
-            <button className="">
-              <p className="bg-[#DDDDDD] rounded-full overflow-hidden">
-                <span className="text-4xl  text-[#333333] overflow-hidden hover:shadow-lg ">
-                  <FaApple />
-                </span>
-              </p>
-            </button>
-          </div>
+        <SocialSignin></SocialSignin>
         </div>
       </div>
     </div>
