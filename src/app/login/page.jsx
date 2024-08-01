@@ -18,13 +18,15 @@ const page = () => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
+    console.log(email, password)
     const resp = await signIn("credentials", {
       email,
       password,
       redirect:true,
       callbackUrl:path ? path : "/"
     })
-    console.log(resp, "this is user response")
+    console.log(resp, "this is user respose")
+    // console.log(session, "this is user response")
   }
   return (
     <div className="relative h-[90vh]">
@@ -40,7 +42,7 @@ const page = () => {
           </Link>
         </div>
         <div className="bg-slate-50 bg-opacity-30 p-10 rounded-sm mt-16 shadow-lg">
-          <form className="space-y-4" action="">
+          <form className="space-y-4" onSubmit={handelLogin} action="">
             <div className="flex flex-col">
               <label className="font-semibold" htmlFor="">
                 Account*
@@ -68,7 +70,7 @@ const page = () => {
             <div>
               <input
                 type="submit"
-                className="w-96 mt-2 bg-[#8dbe3f] py-2 rounded-sm text-center font-bold"
+                className="w-96 mt-2 hover:cursor-pointer bg-[#8dbe3f] py-2 rounded-sm text-center font-bold"
                 value={"Login"}
               />
             </div>

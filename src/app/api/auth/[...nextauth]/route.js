@@ -1,7 +1,8 @@
 import { connectDB } from "@/lib/connectDB";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from 'next-auth/providers/credentials'
-import Email from "next-auth/providers/email";
+import bcrypt from "bcrypt";
+
 const handler = NextAuth({
     session:{
         strategy:"jwt",
@@ -15,6 +16,7 @@ const handler = NextAuth({
                 password:{}
             },
             async authorize(credentials) {
+               
                 const {email, password} = credentials;
                 if (!email || !password) {
                     return null
@@ -36,11 +38,15 @@ const handler = NextAuth({
             
         })
     ],
-    pages:{
-        signIn:'/login'
-    },
-    callbacks:{
+      callbacks:{
 
+    },
+    pages:{
+        signIn:"login"
     }
+    // pages:{
+    //     signIn:'/login'
+    // },
+  
 })
 export {handler as GET, handler as POST};

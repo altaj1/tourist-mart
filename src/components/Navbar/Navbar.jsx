@@ -1,12 +1,15 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { IoCartOutline, IoSearchSharp } from "react-icons/io5";
+import { IoCartOutline, IoSearchSharp, IoPersonOutline } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaAngleDown } from "react-icons/fa";
 import Search from "./Search";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 const Navbar = () => {
+  const session = useSession()
+  console.log(session)
   return (
     <div className="bg-[#232F3E] text-yellow-50">
       {/* first navbar */}
@@ -79,20 +82,25 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-end text-end  space-x-4">
-          <Link href={"/login"} className="text-lg font-medium">
+      
+          
+          <p className="text-4xl font-bold">
+        <IoPersonOutline />
+        </p>
+         
+          {session?.status === 'loading' && <h6>Loading....</h6>}
+          {session?.status === 'authenticated' && <div className="text-center lg:block md:block hidden">
+            <p>Welcome</p>
+            <p>{session?.data?.user?.email}</p>
+          </div> }
+          {session?.status === 'unauthenticated' && <Link href={"/login"} className="text-lg font-medium">
             Login
-          </Link>
-          {/* Uncomment if needed */}
-          {/* <div>
-            <Image alt={session?.data?.user?.name} src={session?.data?.user?.image} height={50} width={50} className="rounded-full"/>
-          </div> */}
-          {/* {session?.status === 'loading' && <h6>Loading....</h6>}
-          {session?.status === 'unauthenticated' && <Link href="/login" className="btn btn-primary px-8">Login</Link>}
-          {session?.status === 'authenticated' && <button className="btn btn-outline btn-ghost px-8" onClick={() => signOut()}>Logout</button>} */}
+          </Link>}
+          {session?.status === 'authenticated' && <button className="" onClick={() => signOut()}>Logout</button>}
         </div>
       </div>
       
-{/* secoend nabbar */}
+{/* {/* secoend nabbar */}
       <div className="bg-[#131921] py-2 border-b border-gray-700">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center lg:gap-10 md:gap-10 justify-between">
           <div>
