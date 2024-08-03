@@ -1,12 +1,16 @@
-import React from 'react';
+"use client"
+import React, { useEffect } from 'react';
 import Banner from './Banner/Banner';
 import AddOffer from './AddOffer/AddOffer';
+import { useSelector } from 'react-redux';
+import useGetData from '@/lib/getData/useGetData';
 
 
 const HomePages = () => {
-    // const count = useSelector((state) => state)
-    // console.log(count)
-    // console.log(process.env.NEXT_PUBLIC_MONGODB_URI, 'this is mongo db uri')
+    const count = useSelector((state) => state)
+   const data = useGetData()
+    console.log(data, "this is counter")
+    
     return (
         <div>
            <Banner></Banner>
