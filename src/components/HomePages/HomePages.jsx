@@ -9,7 +9,7 @@ import useGetData from '@/lib/getData/useGetData';
 const HomePages = () => {
     const count = useSelector((state) => state)
    const data = useGetData()
-    console.log(data, "this is counter")
+    console.log(data, )
     
     return (
         <div>
