@@ -8,7 +8,8 @@ import SnowMountain from '../../../public/images/spotsCategoris/SnowMountain.jpe
 import Desert from '../../../public/images/spotsCategoris/Desert.jpg'
 export const spotCategories =[
     {
-      category: "Sea Beach",
+      category: `Sea Beach`,
+      id:1,
       photo:SeaBeach,
       subcategories: [
         {
@@ -47,6 +48,7 @@ export const spotCategories =[
     },
     {
       category: "Mountain",
+      id:2,
       photo:Mountain,
       subcategories: [
         {
@@ -85,6 +87,7 @@ export const spotCategories =[
     },
     {
       category: "Rain Forest",
+      id:3,
       photo:RainForest,
       subcategories: [
         {
@@ -123,6 +126,7 @@ export const spotCategories =[
     },
     {
       category: "Mangrove Forest",
+      id:4,
       photo:MangroveForest,
       subcategories: [
         {
@@ -161,6 +165,7 @@ export const spotCategories =[
     },
     {
       category: "Lake",
+      id:5,
       photo:Lake,
       subcategories: [
         {
@@ -199,6 +204,7 @@ export const spotCategories =[
     },
     {
       category: "Snowfall",
+      id:6,
       photo:Snowfall,
       subcategories: [
         {
@@ -237,6 +243,7 @@ export const spotCategories =[
     },
     {
       category: "Snow Mountain",
+      id:7,
       photo:SnowMountain,
       subcategories: [
         {
@@ -275,6 +282,7 @@ export const spotCategories =[
     },
     {
       category: "Desert",
+      id:8,
       photo:Desert,
       subcategories: [
         {
