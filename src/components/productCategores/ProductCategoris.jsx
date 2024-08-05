@@ -4,21 +4,25 @@ import React, { useState } from 'react';
 
 const ProductCategories = ({ categoriesId }) => {
   const [checkedCategory, setCheckedCategory] = useState(null);
+  const [categoresProduct, SetCategoresProduct] = useState("");
+  const [categoresItem, setCategoresItem] = useState("");
   const { subcategories } = spotCategories.find((spot) => spot.id == categoriesId);
 
   const handleCheckboxChange = (event, idx) => {
     const checked = event.target.value;
-    console.log(idx)
+     SetCategoresProduct(checked);
     setCheckedCategory(checkedCategory === idx ? null : idx); // Toggle the selected category
   };
 
   const handleCheckboxItem = (event, idx) => {
-    const checked = event.target.value;
-    console.log(checked);
+    const item = event.target.value;
+    setCategoresItem(item)
   };
+  console.log(categoresProduct, categoresItem);
 
   return (
     <div className='container mx-auto'>
+        <h1 className="text-xl font-semibold">Product Category</h1>
       {subcategories.map((category, idx) => (
         <form key={idx}>
           <input
