@@ -27,7 +27,7 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2    "
           >
-            <Link href={"/"} className="text-lg font-medium">
+            <Link href={"/admin/dashboard"} className="text-lg font-medium">
               Gift Cards
             </Link>
             <Link href={"/"} className="text-lg font-medium">
