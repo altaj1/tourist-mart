@@ -6,7 +6,7 @@ import OfferSlide from './OfferSlide';
 const AddOffer = () => {
     return (
       <div className=' lg:flex md:flex justify-around mt-20 container mx-auto' >
-          <div className=' p-5 shadow-xl gap-3 rounded-lg'>
+          <div className='p-5 shadow-xl gap-3 rounded-lg'>
           
           <Image src={'/images/specialOffer.jpg'}
             alt='product'
