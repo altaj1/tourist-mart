@@ -52,7 +52,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex flex-col md:flex-row  w-full hidden lg:block md:block gap-8">
-          <Link href={"/"} className="text-lg font-medium mr-5">
+          <Link href={"/admin/dashboard"} className="text-lg font-medium mr-5">
             Gift Cards
           </Link>
           <Link href={"/"} className="text-lg font-medium mr-5">
@@ -79,13 +79,17 @@ const Navbar = () => {
             </ul>
           </div>
         </div>
+        <div className="lg:w-full md:w-[55%] mt-2 md:mt-0 lg:hidden md:hidden ">
+            <Search />
+          </div>
       </div>
+      
       <div className="navbar-end text-end  space-x-4">
       
           
-          <p className="text-4xl font-bold">
+          <Link href={'/dashboard'} className="text-4xl font-bold">
         <IoPersonOutline />
-        </p>
+        </Link>
          
           {session?.status === 'loading' && <h6>Loading....</h6>}
           {session?.status === 'authenticated' && <div className="text-center lg:block md:block hidden">
@@ -107,7 +111,7 @@ const Navbar = () => {
               TouristMart
             </Link>
           </div>
-          <div className="lg:w-full md:w-[55%] mt-2 md:mt-0">
+          <div className="lg:w-full md:w-[55%] mt-2 md:mt-0 lg:block md:block hidden">
             <Search />
           </div>
           <div className="flex items-center space-x-4">
