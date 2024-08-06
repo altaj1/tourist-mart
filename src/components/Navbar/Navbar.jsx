@@ -11,6 +11,7 @@ import Name from "../shareComponents/Name";
 import ShoppingCard from "../shareComponents/ShoppingCard";
 const Navbar = () => {
   const session = useSession()
+  console.log(session)
   return (
     <div className="bg-[#232F3E] text-yellow-50">
       {/* first navbar */}

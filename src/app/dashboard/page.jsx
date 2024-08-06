@@ -7,9 +7,11 @@ import { MdOutlineLeaderboard } from "react-icons/md";
 import { signOut } from 'next-auth/react';
 import Name from '@/components/shareComponents/Name';
 import ShoppingCard from '@/components/shareComponents/ShoppingCard';
+import AdminMenu from '@/components/Menu/AdminMenu';
 const DashboardPage = () => {
     const [isActive, setActive] = useState(false)
     const [toggle, setToggle] = useState(true)
+    const role =  'Admin' ; 
     // const [role, isLoading] = useRole()
     //    console.log(role)
   //   console.log(role, isLoading)
@@ -75,9 +77,9 @@ const DashboardPage = () => {
                 {/* {role === 'User' && <UserMenu/>}
   
                 
-                {role === 'ContestCreator' && <CreatorMenu></CreatorMenu>}
+                {role === 'ContestCreator' && <CreatorMenu></CreatorMenu>} */}
                 
-                {role === 'Admin' && <AdminMenu />} */}
+                {role === 'Admin' && <AdminMenu />}
               </nav>
             </div>
           </div>
