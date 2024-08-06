@@ -6,11 +6,12 @@ import FacebookProvider from "next-auth/providers/facebook";
 import bcrypt from "bcrypt";
 
 const handler = NextAuth({
-    // session:{
-    //     strategy:"jwt",
-    //     maxAge:30 * 24 * 60 * 60,
-    //     rolling:false,
-    // },
+    secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
+    session:{
+        strategy:"jwt",
+        maxAge:30 * 24 * 60 * 60,
+        rolling:false,
+    },
     providers:[
         CredentialsProvider({
             credentials:{

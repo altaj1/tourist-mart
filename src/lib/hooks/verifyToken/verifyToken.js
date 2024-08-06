@@ -1,7 +1,9 @@
 export const verifyAdmin = async (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  console.log(token)
     // console.log('hello')
-    const user = req.cookies?.token
-    console.log("this is veryfi admin", user)
+    // const user = req.cookies?.token
+    // console.log("this is veryfi admin", user)
     
     // const query = { email: user?.email }
     // const result = await usersCollection.findOne(query)
