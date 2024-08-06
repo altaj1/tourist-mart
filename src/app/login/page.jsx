@@ -11,6 +11,7 @@ import SocialSignin from "@/components/shared/SocialSignin";
 
 
 const page = () => {
+  console.log(signIn)
   const router = useRouter();
   const session = useSession();
   const searchParams = useSearchParams();

@@ -1,6 +1,9 @@
+export const verifyToken = async(req, res, next)=>{
+
+}
 export const verifyAdmin = async (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
-  console.log(token)
+  const token = req
+  // console.log(token.cookies, "this is token")
     // console.log('hello')
     // const user = req.cookies?.token
     // console.log("this is veryfi admin", user)
