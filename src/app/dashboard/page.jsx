@@ -5,6 +5,8 @@ import { AiOutlineBars } from 'react-icons/ai'
 import { useState } from 'react'
 import { MdOutlineLeaderboard } from "react-icons/md";
 import { signOut } from 'next-auth/react';
+import Name from '@/components/shareComponents/Name';
+import ShoppingCard from '@/components/shareComponents/ShoppingCard';
 const DashboardPage = () => {
     const [isActive, setActive] = useState(false)
     const [toggle, setToggle] = useState(true)
@@ -19,34 +21,27 @@ const DashboardPage = () => {
     return (
         <>
         {/* Small Screen Navbar */}
-        <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
+        <div className=' bg-[#131921] text-yellow-50 flex justify-between md:hidden'>
           <div>
             <div className='block cursor-pointer p-4 font-bold'>
-              {/* <Link to='/'>
-                <img
-                  className='h-14 w-14'
-  
-                  src='https://i.ibb.co/FgwgMQV/logo-removebg-preview.png'
-                  alt='logo'
-                  width='100'
-                  height='100'
-                />
-              </Link> */}
-              asjdkfjalsdjf
+              <Name></Name>
             </div>
           </div>
-  
-          <button
+         <div className="flex"> 
+         <ShoppingCard></ShoppingCard>
+         <button
             onClick={handleToggle}
-            className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'
+            className='mobile-menu-button p-4 focus:outline-none '
           >
-            <AiOutlineBars className='h-5 w-5' />
+            <AiOutlineBars className='h-7 w-7' />
           </button>
+         </div>
+         
         </div>
   
         {/* Sidebar */}
         <div
-          className={`bg-gray-100 md:mt-44 lg:mt-32  z-10 md:fixed flex flex-col justify-between overflow-x-hidden  w-64 space-y-6 px-2  py-4 absolute  inset-y-0 left-0 transform ${
+          className={`bg-gray-100 md:mt-44 lg:mt-32 mt-36 z-10 md:fixed flex flex-col justify-between overflow-x-hidden  w-64 space-y-6 px-2  py-4 absolute  inset-y-0 left-0 transform ${
             isActive && '-translate-x-full'
           }  md:translate-x-0  transition duration-200 ease-in-out`}
         >

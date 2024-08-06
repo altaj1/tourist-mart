@@ -7,6 +7,8 @@ import { FaAngleDown } from "react-icons/fa";
 import Search from "./Search";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
+import Name from "../shareComponents/Name";
+import ShoppingCard from "../shareComponents/ShoppingCard";
 const Navbar = () => {
   const session = useSession()
   return (
@@ -104,20 +106,16 @@ const Navbar = () => {
       </div>
       
 {/* {/* secoend nabbar */}
-      <div className="bg-[#131921] py-2 border-b border-gray-700">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center lg:gap-10 md:gap-10 justify-between">
+      <div className="bg-[#131921] py-2 border-b border-gray-700 lg:block md:block hidden">
+        <div className="container mx-auto px-4 flex  md:flex-row items-center lg:gap-10 md:gap-10 justify-between">
           <div>
-            <Link href={"/"} className="text-3xl font-bold">
-              TouristMart
-            </Link>
+           <Name></Name>
           </div>
           <div className="lg:w-full md:w-[55%] mt-2 md:mt-0 lg:block md:block hidden">
             <Search />
           </div>
-          <div className="flex items-center space-x-4">
-            <p className="bg-[#8dbe3f] p-2 rounded-full text-gray-800 hover:bg-[#5C8121] hover:text-yellow-50"><IoCartOutline className="text-xl" /></p>
-            <p><span>0</span> <br />Cart</p>
-          </div>
+          {/* card */}
+         <ShoppingCard></ShoppingCard>
         </div>
       </div>
     </div>
