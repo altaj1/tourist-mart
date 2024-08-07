@@ -5,6 +5,7 @@ import React from 'react';
 
 const ManageUsers = () => {
     const axiosSecure = useAxiosSecure()
+    
     const {data : users = [],  isLoading,refetch } = useQuery({
         queryKey:['contest'],
         queryFn: async () => {

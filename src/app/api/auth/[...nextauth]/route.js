@@ -2,15 +2,15 @@ import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken'
 import { connectDB } from "@/lib/connectDB";
 const handler = NextAuth({
     secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
     session: {
       strategy: "jwt",
       maxAge: 30 * 24 * 60 * 60,
-      rolling: false,
-    },
-   
+      rolling: false, 
+    },   
     providers: [
       CredentialsProvider({
         credentials: {
@@ -79,8 +79,7 @@ const handler = NextAuth({
         session.user = token
         return session;
       }
-
-   
+    
     },
   });
   
