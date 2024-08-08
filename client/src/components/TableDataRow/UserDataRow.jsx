@@ -37,7 +37,6 @@ const UserDataRow = ({user, refetch}) => {
         role:role.role,
         email: role?.user?.email
       }
-      // console.log(data)
     mutateAsync(data)
  }
 
@@ -46,17 +45,15 @@ const UserDataRow = ({user, refetch}) => {
         status:block.block,
         email: block?.user?.email
       }
-      console.log(data)
         mutateAsync(data)
      }
        const handelDelete =async (id) =>{
-        console.log(id)
-
-        // await axiosSecure.delete(`/delete/user/${id}`)
-        // .then(res => {
-        //     console.log(res.data)
-        //     refetch()
-        // })
+        console.log(id) 
+        await axiosSecure.delete(`/manage-users/api/get-all-users${id}`)
+        .then(res => {
+            console.log(res.data)
+            refetch()
+        })
      }
     return (
         <tr>
