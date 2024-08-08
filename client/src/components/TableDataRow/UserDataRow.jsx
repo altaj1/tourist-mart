@@ -48,12 +48,10 @@ const UserDataRow = ({user, refetch}) => {
         mutateAsync(data)
      }
        const handelDelete =async (id) =>{
-        console.log(id) 
-        await axiosSecure.delete(`/manage-users/api/get-all-users${id}`)
-        .then(res => {
-            console.log(res.data)
-            refetch()
-        })
+        
+      const {data} = await axiosSecure.delete(`/manage-users/api/delete-user/${id}`)
+       console.log(data)
+       refetch()
      }
     return (
         <tr>
