@@ -23,7 +23,7 @@ export const POST = async (request) => {
     const hashedPassword = bcrypt.hashSync(newUser.password, 14);
 
     // Insert the new user into the database
-    const resp = await usersCollection.insertOne({ ...newUser, password: hashedPassword, role:'user' });
+    const resp = await usersCollection.insertOne({ ...newUser, password: hashedPassword, role:'User' });
     return NextResponse.json({ message: 'User Created' }, { status: 201 }); // 201 Created
   } catch (error) {
     

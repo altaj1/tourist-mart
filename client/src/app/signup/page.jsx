@@ -5,14 +5,14 @@ import SocialSignin from '@/components/shared/SocialSignin';
 import useAxiosCommon from '@/lib/hooks/apiHooks/useAxiosCommon';
 import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+
 import React from 'react';
 import { FaApple, FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import Swal from 'sweetalert2';
 
 const page = () => {
-  // const router = useRouter();
+
   const axiosCommon = useAxiosCommon()
   // console.log(axiosCommon)
   const {mutateAsync}= useMutation(
@@ -50,7 +50,7 @@ const page = () => {
       password: e.target.password.value,
     }
    await mutateAsync(newUser)
-    // router.push('/')
+    router.push('/login')
     // console.log(newUser)
   }
     return (

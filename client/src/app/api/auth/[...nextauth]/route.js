@@ -51,12 +51,17 @@ const handler = NextAuth({
       async signIn({ user, account }) {
         if (account.provider === "google" || account.provider === "github" || account.provider === "facebook") {
           const { name, email, image } = user;
+          const data ={
+            name,
+            email,
+            role:"User"
+          }
           try {
             const db = await connectDB();
             const userCollection = db.collection("users");
             const userExist = await userCollection.findOne({ email });
             if (!userExist) {
-              const res = await userCollection.insertOne(user);
+              const res = await userCollection.insertOne(data);
               return user;
             } else {
               return user;

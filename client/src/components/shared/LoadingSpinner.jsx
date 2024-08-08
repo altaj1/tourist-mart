@@ -1,3 +1,5 @@
+import { BarLoader } from "react-spinners"
+
 const LoadingSpinner = ({ smallHeight }) => {
     return (
       <div
@@ -11,3 +13,4 @@ const LoadingSpinner = ({ smallHeight }) => {
       </div>
     )
   }
+  export default LoadingSpinner

@@ -15,12 +15,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-       <QueryProvider>
+        <div className="scroll-smooth">
+        <QueryProvider>
        <StoreProvider>
         <Navbar></Navbar>
         {children}
         </StoreProvider>
        </QueryProvider>
+        </div>
+       
         </body>
     </html>
   );
