@@ -10,10 +10,11 @@ const ManageUsers = () => {
         queryKey:['contest'],
         queryFn: async () => {
             const {data} = await axiosSecure.get(`/manage-users/api/get-all-users`)
-            console.log(data)
+            // console.log(data)
             return data;
         }
     })
+    console.log(users)
     return (
         <div>
             this is manage user

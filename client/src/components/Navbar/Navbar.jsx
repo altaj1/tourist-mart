@@ -12,7 +12,7 @@ import Name from "../shareComponents/Name";
 import ShoppingCard from "../shareComponents/ShoppingCard";
 const Navbar = () => {
   const session = useSession()
-  console.log(session)
+  // console.log(session)
   const getToken = async email =>{
     const {data} = await axios.post(`${process.env.NEXT_PUBLIC_API_URL_SERVER}/jwt`, {email},{ withCredentials: true })
     return data;
