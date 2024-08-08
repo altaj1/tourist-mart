@@ -11,7 +11,7 @@ import SocialSignin from "@/components/shared/SocialSignin";
 
 
 const page = () => {
-  console.log(signIn)
+  // console.log(signIn)
   const router = useRouter();
   const session = useSession();
   const searchParams = useSearchParams();
@@ -25,11 +25,12 @@ const page = () => {
       email,
       password,
       redirect:true,
-      callbackUrl:path ? path : "/"
+      // callbackUrl:path ? path : "/"
     })
     console.log(resp, "this is user respose")
-    // console.log(session, "this is user response")
+    
   }
+  console.log(session.data, "this is user response")
   return (
     <div className="relative h-[90vh]">
       <div className="absolute inset-0 bg-[url('/images/login.jpg')] bg-cover bg-center"></div>

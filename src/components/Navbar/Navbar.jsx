@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios"
 import { IoCartOutline, IoSearchSharp, IoPersonOutline } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaAngleDown } from "react-icons/fa";
@@ -12,6 +13,16 @@ import ShoppingCard from "../shareComponents/ShoppingCard";
 const Navbar = () => {
   const session = useSession()
   console.log(session)
+  const getToken = async email =>{
+    const {data} = await axios.post(`${process.env.NEXT_PUBLIC_API_URL_SERVER}/jwt`, {email},{ withCredentials: true })
+    return data;
+}
+
+useEffect(()=>{
+  if (session?.data?.user?.email) {
+    getToken(session?.data?.user?.email)
+  }
+},[session?.data?.user?.email])
   return (
     <div className="bg-[#232F3E] text-yellow-50">
       {/* first navbar */}

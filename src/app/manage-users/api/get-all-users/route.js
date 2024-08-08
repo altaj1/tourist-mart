@@ -1,11 +1,11 @@
 import { connectDB } from "@/lib/connectDB"
-import { verifyAdmin,  verifyTokenNom,  } from "@/lib/hooks/verifyToken/verifyToken";
+import { tokenVerify,   } from "@/lib/hooks/verifyToken/verifyToken";
 import { NextResponse } from "next/server";
 
 export const GET = async (req) =>{
     // console.log(" calling api", req)
-    const verifyToken = verifyTokenNom(req)
-    const { valid, message, decoded } = verifyAdmin(req);
+    const verifyToken = tokenVerify(req)
+    // const { valid, message, decoded } = verifyAdmin(req);
     
     const db = await connectDB();
     const usersCollection = db.collection('users')
