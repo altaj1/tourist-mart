@@ -8,11 +8,12 @@ import { signOut } from 'next-auth/react';
 import Name from '@/components/shareComponents/Name';
 import ShoppingCard from '@/components/shareComponents/ShoppingCard';
 import AdminMenu from '@/components/Menu/AdminMenu';
+import useRole from '@/lib/hooks/apiHooks/useRole';
 const DashboardPage = () => {
     const [isActive, setActive] = useState(false)
     const [toggle, setToggle] = useState(true)
-    const role =  'Admin' ; 
-    // const [role, isLoading] = useRole()
+    
+    const {role, isLoading} = useRole()
     //    console.log(role)
   //   console.log(role, isLoading)
     // Sidebar Responsive Handler
