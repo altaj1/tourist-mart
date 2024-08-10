@@ -14,23 +14,28 @@ export const spotCategories =[
       subcategories: [
         {
           name: "Dresses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hat",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Shoes",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Sunglasses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hand Gloves",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Gadgets & Gear",
@@ -38,11 +43,13 @@ export const spotCategories =[
         },
         {
           name: "Camping Accessories",
-          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"]
+          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Backpack",
-          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"]
+          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"],
+          size:["XS", "S", "M", "XL", "XXL"]
         }
       ]
     },
@@ -53,23 +60,29 @@ export const spotCategories =[
       subcategories: [
         {
           name: "Dresses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
+
         },
         {
           name: "Hat",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Shoes",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Sunglasses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hand Gloves",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Gadgets & Gear",
@@ -77,11 +90,13 @@ export const spotCategories =[
         },
         {
           name: "Camping Accessories",
-          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"]
+          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Backpack",
-          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"]
+          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"],
+          size:["XS", "S", "M", "XL", "XXL"]
         }
       ]
     },
@@ -92,23 +107,28 @@ export const spotCategories =[
       subcategories: [
         {
           name: "Dresses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hat",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Shoes",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Sunglasses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hand Gloves",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Gadgets & Gear",
@@ -116,11 +136,13 @@ export const spotCategories =[
         },
         {
           name: "Camping Accessories",
-          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"]
+          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Backpack",
-          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"]
+          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"],
+          size:["XS", "S", "M", "XL", "XXL"]
         }
       ]
     },
@@ -131,23 +153,28 @@ export const spotCategories =[
       subcategories: [
         {
           name: "Dresses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hat",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Shoes",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Sunglasses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hand Gloves",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Gadgets & Gear",
@@ -155,11 +182,13 @@ export const spotCategories =[
         },
         {
           name: "Camping Accessories",
-          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"]
+          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Backpack",
-          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"]
+          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"],
+          size:["XS", "S", "M", "XL", "XXL"]
         }
       ]
     },
@@ -170,23 +199,28 @@ export const spotCategories =[
       subcategories: [
         {
           name: "Dresses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hat",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Shoes",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Sunglasses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hand Gloves",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Gadgets & Gear",
@@ -194,11 +228,13 @@ export const spotCategories =[
         },
         {
           name: "Camping Accessories",
-          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"]
+          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Backpack",
-          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"]
+          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"],
+          size:["XS", "S", "M", "XL", "XXL"]
         }
       ]
     },
@@ -209,23 +245,28 @@ export const spotCategories =[
       subcategories: [
         {
           name: "Dresses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hat",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Shoes",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Sunglasses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hand Gloves",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Gadgets & Gear",
@@ -233,11 +274,13 @@ export const spotCategories =[
         },
         {
           name: "Camping Accessories",
-          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"]
+          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Backpack",
-          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"]
+          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"],
+          size:["XS", "S", "M", "XL", "XXL"]
         }
       ]
     },
@@ -248,23 +291,28 @@ export const spotCategories =[
       subcategories: [
         {
           name: "Dresses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hat",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Shoes",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Sunglasses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hand Gloves",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Gadgets & Gear",
@@ -272,11 +320,13 @@ export const spotCategories =[
         },
         {
           name: "Camping Accessories",
-          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"]
+          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Backpack",
-          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"]
+          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"],
+          size:["XS", "S", "M", "XL", "XXL"]
         }
       ]
     },
@@ -287,23 +337,28 @@ export const spotCategories =[
       subcategories: [
         {
           name: "Dresses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hat",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Shoes",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Sunglasses",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Hand Gloves",
-          items: ["Men", "Women", "Kids"]
+          items: ["Men", "Women", "Kids"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Gadgets & Gear",
@@ -311,11 +366,13 @@ export const spotCategories =[
         },
         {
           name: "Camping Accessories",
-          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"]
+          items: ["Shelter & Sleeping Gear", "Cooking & Eating", "Clothing", "Personal Items", "Navigation & Safety", "Entertainment"],
+          size:["XS", "S", "M", "XL", "XXL"]
         },
         {
           name: "Backpack",
-          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"]
+          items: ["Hiking Backpacks", "Travel Backpacks", "Camping Backpacks", "Tactical/Military Backpacks", "Hydration Packs", "Camera Backpacks", "Wheeled Backpacks", "Ultralight Backpacks", "Child Carriers"],
+          size:["XS", "S", "M", "XL", "XXL"]
         }
       ]
     }

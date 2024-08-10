@@ -1,4 +1,5 @@
 "use client"
+import AddProduct from '@/components/form/AddProduct';
 import LoadingSpinner from '@/components/shared/LoadingSpinner';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
@@ -9,7 +10,7 @@ const page = () => {
    
     return (
         <div>
-            this is add Product
+          <AddProduct></AddProduct>
         </div>
     );
 };

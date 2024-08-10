@@ -68,7 +68,6 @@ const UserDataRow = ({user, refetch}) => {
         className="bg-base-200 p-2 rounded-xl"
         >
           <option>Select</option>
-
           <option value="Agent">Agent</option>
           <option value="Admin">Admin</option>
           <option value="User">User</option>
