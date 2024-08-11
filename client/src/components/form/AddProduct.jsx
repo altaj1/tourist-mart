@@ -3,18 +3,23 @@ import { spotCategories } from "@/lib/spotCategories/spotCategories";
 import React, { useRef, useState } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdOutlineFileDownloadDone } from "react-icons/md";
+import { imageUpload } from "../HomePages/utilits";
+import { useSession } from "next-auth/react";
 
 const AddProduct = () => {
-  const [checked, setChecked] = useState(null);
+  const session = useSession()
   const [selectedSpot, setSelectedSpot] = useState(null);
   const [selectedSpotName, setSelectedSpotName] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [checkboxItem, setCheckboxItem] = useState("");
   const [features, setFeature] = useState([]);
+  const [color, setColor] = useState([])
+  const colorRef = useRef(null);
   const featureInputRef = useRef(null);
   const [checkedIndex, setCheckedIndex] = useState(null);
   const [checkboxSize, setCheckBoxSize] = useState([]);
   const [coverImagePreview, setCoverImagePreview] = useState();
+  const [groupImagePreview, setGroupImagePreview] = useState([]);
 
   const handleSelectCategory = (e) => {
     const selectedIndex = e.target.selectedIndex;
@@ -50,40 +55,64 @@ const AddProduct = () => {
     setCheckBoxSize([...checkboxSize, size]);
   };
 
-  const handleCoverImage = (image) => {
-    setCoverImagePreview(URL.createObjectURL(image));
+  const handleCoverImage = async(image) => {
+    const image_url = await imageUpload(image)
+    setCoverImagePreview(image_url)
+    // setCoverImagePreview(URL.createObjectURL(image));
   };
-
-  console.log(coverImagePreview, "this is data images");
-  // console.log(checkboxItem, "this is data")
+  const handleGroupImage = async (image)=>{
+    const image_url = await imageUpload(image)
+  
+    setGroupImagePreview([...groupImagePreview, image_url])
+    // setGroupImagePreview([...groupImagePreview, URL.createObjectURL(image)])
+  }
+  const handleColer = (e)=>{
+     const data = e.target.value;
+     setColor([...color, data])
+     colorRef.current.value = "";
+  }
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
+
+    const actualPrice = form.price.value
+    const discount = form.discount.value
+    const currentPrice = actualPrice * (1 - discount/100)
+    
     const productData = {
       name: form.name.value,
       description: form.description.value,
       bracode: form.bracode.value,
       quantity: form.quantity.value,
+      price: actualPrice,
       SpotName: selectedSpotName,
       category: selectedProduct?.name,
       item: checkboxItem,
       size: checkboxSize,
       features: features,
+      coverImage:coverImagePreview,
+      groupImage:groupImagePreview,
+      discount:discount,
+      currentPrice:currentPrice,
+      color:color,
+      agent:session?.data?.user?.email
+
     };
     console.log(productData, "this is product data");
   };
-
+console.log(session?.data?.user?.email)
   return (
     <>
       {/* button */}
 
       <div>
-        <form onSubmit={handleSubmit} action="" className="container mx-auto">
-          <div className="flex justify-between items-center mb-5">
+        <form onSubmit={handleSubmit} action="" className="container mx-auto mt-10">
+          <div className="flex justify-between items-center mb-5 bg-[#F9F9F9] p-5 rounded-lg shadow-sm">
             <h3 className="font-semibold">Add New Product</h3>
             <button
               type="submit"
-              className="bg-[#8DBE3F] hover:bg-[#5B8021] px-4 py-2 rounded-xl hover:text-yellow-50 text-xs font-semibold flex items-center gap-2"
+              className="bg-[#8DBE3F] hover:bg-[#5B8021] px-6 py-2 rounded-xl hover:text-yellow-50 text-xs font-semibold flex items-center gap-2"
             >
               <span className="font-bold text-sm">
                 <MdOutlineFileDownloadDone />
@@ -91,9 +120,9 @@ const AddProduct = () => {
               <span>Add Product</span>
             </button>
           </div>
-          <div className="lg:flex md:flex justify-between text-gray-800  gap-5 container mx-auto">
-            <div className="bg-[#F9F9F9]  lg:w-[65%] md:w-[65%] space-y-4">
-              <h1 className="font-samibold">General Information</h1>
+          <div className="lg:flex md:flex justify-between text-gray-800 container mx-auto gap-5">
+            <div className="bg-[#F9F9F9]  lg:w-[65%] md:w-[65%] space-y-4 p-5 rounded-lg shadow-sm">
+              <h1 className="font-semibold">General Information</h1>
               <div className="flex flex-col pl-5 pr-5 space-y-1">
                 <label htmlFor="">Name Product*</label>
                 <input
@@ -115,8 +144,8 @@ const AddProduct = () => {
                 ></textarea>
               </div>
               {/* barcode quantity */}
-              <div className="lg:flex md:flex justify-between  pr-5 gap-4">
-                <div className="flex flex-col pl-5 pr-5 space-y-1 lg:w-[50%] md:w-[50%]">
+              <div className="lg:flex md:flex justify-between  p-5 gap-4">
+                <div className="flex flex-col  space-y-1 lg:w-[50%] md:w-[50%]">
                   <label htmlFor="">Barcode*</label>
                   <input
                     type="text"
@@ -126,7 +155,7 @@ const AddProduct = () => {
                     className="p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#8DBE3F] hover:border hover:border-[#8DBE3F]"
                   />
                 </div>
-                <div className="flex flex-col pl-5 pr-5 lg:w-[50%] md:w-[50%] space-y-1">
+                <div className="flex flex-col  lg:w-[50%] md:w-[50%] space-y-1">
                   <label htmlFor="">Quantity*</label>
                   <input
                     required
@@ -202,21 +231,24 @@ const AddProduct = () => {
                         </div>
                       ))}
                     </div>
-                    <div className="flex lg:w-[50%] md:w-[50%] flex-col ">
+                    <div className="lg:w-[50%] md:w-[50%] flex flex-col">
                       <label htmlFor="">Product Features*</label>
-                      <input
+                    <div className="w-[100%] flex focus:outline-none focus:ring-1 focus:ring-[#8DBE3F] hover:border hover:border-[#8DBE3F] rounded-md">
+                    <input
                         type="text"
                         placeholder="Enter Product Features"
                         name="feature"
                         onBlur={handleFeature}
                         ref={featureInputRef}
-                        className="p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#8DBE3F] hover:border hover:border-[#8DBE3F]"
-                      />
+                        className="p-2 w-full rounded-l-md focus:outline-none"
+                      /> <div className="bg-slate-200 px-2 rounded-r-md flex items-center justify-center"> <IoIosAddCircleOutline /></div>
+                    </div>
+                      
                     </div>
                   </div>
                 ) : (
                   // outhers
-                  <div className="lg:flex md:flex space-y-2 gap-4 pl-5 pr-5">
+                  <div className="lg:flex md:flex space-y-2 gap-4 pl-5 pr-5 items-center justify-center">
                     <div className="lg:w-[50%] md:w-[50%]">
                       <h1>
                         {selectedProduct?.items.length == 3
@@ -259,12 +291,13 @@ const AddProduct = () => {
               </div>
             </div>
             {/* upload img */}
-            <div className=" md:w-[30%] lg:w-[30%]">
+            <div className=" md:w-[35%] lg:w-[35%] bg-[#F9F9F9] p-5 rounded-lg shadow-sm">
+              <h1 className="font-semibold">Product Media</h1>
               {/* images */}
-              <div className="bg-[#F9F9F9] h-96 p-5">
+              <div className="p-5">
                 <div>
 
-                  <label className="flex flex-col items-center rounded-lg shadow-lg bg-[#FCF7F1]">
+                  <label className="flex flex-col  items-center rounded-lg shadow-lg bg-[#FCF7F1]">
                     <input
                       type="file"
                       className="text-sm cursor-pointer w-36 hidden bg-slate-200"
@@ -273,8 +306,9 @@ const AddProduct = () => {
                       id="image"
                       onChange={(e) => handleCoverImage(e.target.files[0])}
                       hidden
+                      required
                     />
-                    <div className="h-64 object-cover rounded-lg  flex items-center justify-center">
+                    <div className="h-64 object-cover  rounded-lg  flex items-center justify-center">
                       {coverImagePreview ? (
                         <img className=" h-64 w-64 object-cover rounded-lg" src={coverImagePreview} />
                       ) : (
@@ -286,6 +320,76 @@ const AddProduct = () => {
                       )}
                     </div>
                   </label>
+                  {/* group images */}
+                  <label className="flex flex-col items-center mt-8 rounded-lg shadow-lg bg-[#FCF7F1]">
+                    <input
+                      type="file"
+                      className="text-sm cursor-pointer w-36 hidden bg-slate-200"
+                      name="image"
+                      accept="image/*"
+                      id="image"
+                      onChange={(e) => handleGroupImage(e.target.files[0])}
+                      hidden
+                    />
+                    <div className="h-28 object-cover overflow-auto rounded-lg gap-2 flex items-center ">
+                      {groupImagePreview?.map(img=>(
+                        <img className=" object-cover h-28 w-28 rounded-lg" src={img} />
+                      ))}
+                      <p className="text-3xl opacity-50 ml-2">
+                          <span>
+                            <IoIosAddCircleOutline />
+                          </span>
+                        </p>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              {/* prices brand */}
+              <div className="lg:flex  justify-between  ">
+                <div className="flex flex-col pl-5 pr-5 space-y-1 lg:w-[50%]">
+                  <label htmlFor="">Price*</label>
+                  <input
+                    type="number"
+                    placeholder="Enter Product Price"
+                    required
+                    name="price"
+                    className="p-2 w-full rounded-md focus:outline-none focus:ring-1 focus:ring-[#8DBE3F] hover:border hover:border-[#8DBE3F]"
+                  />
+                </div>
+                <div className="flex flex-col pl-5 pr-5 lg:w-[50%]  space-y-1">
+                  <label htmlFor="">Brand</label>
+                  <input
+                    className=" rounded-md p-2 focus:outline-none focus:ring-1 focus:ring-[#8DBE3F] hover:border hover:border-[#8DBE3F]"
+                    placeholder="Enter Product Brand"
+                    name="brand"
+                    id=""
+                  />
+                </div>
+              </div>
+              {/* discount color */}
+              <div className="lg:flex  justify-between mt-2 ">
+                <div className="flex flex-col pl-5 pr-5 space-y-1 lg:w-[50%]">
+                  <label htmlFor="">Discount</label>
+                  <input
+                    type="number"
+                    placeholder="Enter Discount %"
+                    
+                    name="discount"
+                    className="p-2 w-full rounded-md focus:outline-none focus:ring-1 focus:ring-[#8DBE3F] hover:border hover:border-[#8DBE3F]"
+                  />
+                </div>
+                <div className="flex flex-col pl-5 pr-5 lg:w-[50%]  space-y-1">
+                  <label htmlFor="">Colors</label>
+                  <div className="w-[100%] flex focus:outline-none focus:ring-1 focus:ring-[#8DBE3F] hover:border hover:border-[#8DBE3F] rounded-md">
+                    <input
+                        type="text"
+                        placeholder="Enter Product Colors"
+                        name="color"
+                        onBlur={handleColer}
+                        ref={colorRef}
+                        className="p-2 w-full rounded-l-md focus:outline-none"
+                      /> <div className="bg-slate-200 px-2 rounded-r-md flex items-center justify-center"> <IoIosAddCircleOutline /></div>
+                    </div>
                 </div>
               </div>
             </div>

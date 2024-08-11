@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export const photosGallery = [
     {
         images:'/images/gadget-removebg-preview.png',
@@ -18,3 +20,10 @@ export const photosGallery = [
         images3:'/images/fatuya3.jpg',
     },
 ]
+export const imageUpload = async image =>{
+    const formData = new FormData()
+    // console.log(formData, "this is form data")
+    formData.append("image", image)
+    const {data} = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`, formData)
+    return data.data.display_url
+}
