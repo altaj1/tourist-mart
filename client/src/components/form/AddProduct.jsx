@@ -5,6 +5,9 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { MdOutlineFileDownloadDone } from "react-icons/md";
 import { imageUpload } from "../HomePages/utilits";
 import { useSession } from "next-auth/react";
+import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "@/lib/hooks/apiHooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
   const session = useSession()
@@ -20,16 +23,17 @@ const AddProduct = () => {
   const [checkboxSize, setCheckBoxSize] = useState([]);
   const [coverImagePreview, setCoverImagePreview] = useState();
   const [groupImagePreview, setGroupImagePreview] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   const handleSelectCategory = (e) => {
     const selectedIndex = e.target.selectedIndex;
     const spot = spotCategories[selectedIndex - 1]; // Adjust for "Select" option at index 0
-    setSelectedSpotName(spot.category);
-    setSelectedSpot(spot?.subcategories);
+    setSelectedSpotName(spot?.category);
+    setSelectedSpot(spot);
   };
   const handleSelectProduct = (e) => {
     const selectedIndex = e.target.selectedIndex;
-    const product = selectedSpot[selectedIndex - 1];
+    const product = selectedSpot?.subcategories[selectedIndex - 1];
     setSelectedProduct(product);
     setCheckboxItem("");
     setCheckedIndex(null);
@@ -71,8 +75,22 @@ const AddProduct = () => {
      setColor([...color, data])
      colorRef.current.value = "";
   }
-  
-  const handleSubmit = (e) => {
+  const {mutateAsync} = useMutation({
+    mutationFn:async productData =>{
+      const {data} = await axiosSecure.post(`/agent/api/manage-product`, productData)
+      return data;
+    },
+    onSuccess:()=>{
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Product Post Successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+  })
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
 
@@ -96,12 +114,15 @@ const AddProduct = () => {
       discount:discount,
       currentPrice:currentPrice,
       color:color,
-      agent:session?.data?.user?.email
+      agent:session?.data?.user?.email,
+      spotId:selectedSpot?.id
 
     };
-    console.log(productData, "this is product data");
+  console.log(productData, "this is product data");
+
+    const res = mutateAsync(productData)
+   
   };
-console.log(session?.data?.user?.email)
   return (
     <>
       {/* button */}
@@ -195,8 +216,8 @@ console.log(session?.data?.user?.email)
                     className=" p-2 w-full rounded-md focus:outline-none focus:ring-1 focus:ring-[#8DBE3F] hover:border hover:border-[#8DBE3F] "
                     onChange={handleSelectProduct}
                   >
-                    <option value="">{selectedSpot ? "Select" : ""}</option>
-                    {selectedSpot?.map((product, index) => (
+                    <option value="">{selectedSpot?.subcategories ? "Select" : ""}</option>
+                    {selectedSpot?.subcategories?.map((product, index) => (
                       <option
                         key={index}
                         className="selection:bg-gray-800 hover:cursor-pointer"
