@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
-import authSlice from "./features/auth/authSlice"
 
-
+import searchTextSlice from "./features/searchText/searchTextSlice"
 
   const makeStore = () =>{
     return configureStore({
         reducer:{
-            auth:authSlice,
+           
+            search:searchTextSlice
             
         }
     })

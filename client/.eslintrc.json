@@ -1,5 +1,5 @@
 {
-  "extends": "next",
+  "extends": "next/babel",
   "rules": {
     // Add any custom rules here
   }

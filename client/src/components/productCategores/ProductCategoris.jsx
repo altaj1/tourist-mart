@@ -1,8 +1,15 @@
 "use client";
+import useAxiosCommon from '@/lib/hooks/apiHooks/useAxiosCommon';
 import { spotCategories } from '@/lib/spotCategories/spotCategories';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const ProductCategories = ({ categoriesId }) => {
+  const reduxData = useSelector((state)=>state.search)
+  // console.log(reduxData)
+  const axiosCommon = useAxiosCommon();
   const [checkedCategory, setCheckedCategory] = useState(null);
   const [categoresProduct, SetCategoresProduct] = useState("");
   const [categoresItem, setCategoresItem] = useState("");
@@ -13,13 +20,22 @@ const ProductCategories = ({ categoriesId }) => {
      SetCategoresProduct(checked);
     setCheckedCategory(checkedCategory === idx ? null : idx); // Toggle the selected category
   };
-
+  const {data: Product = [], isLoading, refetch} = useQuery({
+    queryKey:["categorisData", categoresItem, categoresProduct],
+    queryFn: async ()=>{
+            const {data} = await axiosCommon.get(`/categores/api/${categoriesId}?categoresItem=${categoresItem}&categoresProduct=${categoresProduct}`)
+            console.log(data)
+            return data
+    }
+  })
   const handleCheckboxItem = (event, idx) => {
     const item = event.target.value;
+    refetch()
     setCategoresItem(item)
+    
   };
   console.log(categoresProduct, categoresItem);
-
+  
   return (
     <div className='container mx-auto'>
         <h1 className="text-xl font-semibold">Product Category</h1>
