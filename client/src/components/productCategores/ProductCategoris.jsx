@@ -8,7 +8,8 @@ import { useSelector } from 'react-redux';
 
 const ProductCategories = ({ categoriesId }) => {
   const reduxData = useSelector((state)=>state.search)
-  // console.log(reduxData)
+  // console.log(reduxData.value," redux text")
+  const search = reduxData.value
   const axiosCommon = useAxiosCommon();
   const [checkedCategory, setCheckedCategory] = useState(null);
   const [categoresProduct, SetCategoresProduct] = useState("");
@@ -21,9 +22,9 @@ const ProductCategories = ({ categoriesId }) => {
     setCheckedCategory(checkedCategory === idx ? null : idx); // Toggle the selected category
   };
   const {data: Product = [], isLoading, refetch} = useQuery({
-    queryKey:["categorisData", categoresItem, categoresProduct],
+    queryKey:["categorisData", categoresItem, categoresProduct, search],
     queryFn: async ()=>{
-            const {data} = await axiosCommon.get(`/categores/api/${categoriesId}?categoresItem=${categoresItem}&categoresProduct=${categoresProduct}`)
+            const {data} = await axiosCommon.get(`/categores/api/${categoriesId}?categoresItem=${categoresItem}&categoresProduct=${categoresProduct}&search=${search}`)
             console.log(data)
             return data
     }
@@ -34,7 +35,7 @@ const ProductCategories = ({ categoriesId }) => {
     setCategoresItem(item)
     
   };
-  console.log(categoresProduct, categoresItem);
+  console.log(Product);
   
   return (
     <div className='container mx-auto'>

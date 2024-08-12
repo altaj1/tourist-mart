@@ -7,11 +7,25 @@ export const GET = async (request, {params})=>{
     const { searchParams } = new URL(request.url);
     const categoresItem = searchParams.get("categoresItem");
     const categoresProduct = searchParams.get("categoresProduct");
+    const searchText = searchParams.get("search");
     const spotId = params.id
     try {
         const spotResp = await productsCollection.find({
             spotId:parseInt(spotId)}).toArray()
-        console.log(spotResp)
+        if (!categoresProduct) {
+            return NextResponse.json({spotResp});
+        }
+        if (categoresProduct) {
+            const resultCategorisProduct = spotResp.find(rs=>rs.category == categoresProduct);
+            if (!categoresItem) {
+                return NextResponse.json({resultCategorisProduct});
+            }
+            if (categoresItem) {
+                const requesItem = resultCategorisProduct.find(rs=>rs.category == categoresProduct);
+                return NextResponse.json({requesItem});
+            }
+            console.log(resultCategorisProduct)
+        }
     } catch (error) {
         console.log(error)
     }

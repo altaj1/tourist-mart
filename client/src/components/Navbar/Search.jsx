@@ -8,7 +8,7 @@ const Search = () => {
   const handleSearchText = (e)=>{
     e.preventDefault()
     const text = e.target.searchText.value;
-    console.log(text, "thsi is text")
+    // console.log(text, "thsi is text")
     dispatch(searchText(text))
   }
   return (
