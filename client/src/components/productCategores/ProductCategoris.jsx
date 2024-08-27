@@ -6,11 +6,12 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
+import Paginatio from '../shared/Paginatio';
 
 const ProductCategories = ({ categoriesId }) => {
   const reduxData = useSelector((state)=>state.search)
-  // console.log(reduxData.value," redux text")
   const search = reduxData.value
+  // console.log(reduxData.value," redux text")
   const axiosCommon = useAxiosCommon();
   const [checkedCategory, setCheckedCategory] = useState(null);
   const [categoresProduct, SetCategoresProduct] = useState("");
@@ -100,7 +101,8 @@ const ProductCategories = ({ categoriesId }) => {
       <div></div>
       </div>
        {/* pagination */}
-       <div className="pagination join flex items-center justify-center p-16">
+       <Paginatio></Paginatio>
+       {/* <div className="pagination join flex items-center justify-center p-16">
         <button
           className="flex items-center justify-center gap-1 mr-4"
           onClick={handlePrevPage}
@@ -128,7 +130,7 @@ const ProductCategories = ({ categoriesId }) => {
         >
           Next <GrLinkNext />
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
