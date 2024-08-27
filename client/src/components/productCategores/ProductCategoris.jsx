@@ -9,19 +9,20 @@ import { useSelector } from 'react-redux';
 import Paginatio from '../shared/Paginatio';
 
 const ProductCategories = ({ categoriesId }) => {
-  const reduxData = useSelector((state)=>state.search)
-  const search = reduxData.value
-  // console.log(reduxData.value," redux text")
+  const reduxData = useSelector((state)=>state)
+  const search = reduxData?.search?.value;
+  const currentPage = reduxData?.pagination?.value;
+  console.log(reduxData?.pagination?.value," redux text")
   const axiosCommon = useAxiosCommon();
   const [checkedCategory, setCheckedCategory] = useState(null);
   const [categoresProduct, SetCategoresProduct] = useState("");
   const [categoresItem, setCategoresItem] = useState("");
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(12);
-  const [count, setCount] = useState(0);
+  // const [currentPage, setCurrentPage] = useState(0);
+  // const [itemsPerPage, setItemsPerPage] = useState(12);
+  // const [count, setCount] = useState(0);
   const { subcategories } = spotCategories.find((spot) => spot.id == categoriesId);
-  const numberOfPages = Math.ceil(count / itemsPerPage);
-  const pages = [...Array(numberOfPages).keys()];
+  // const numberOfPages = Math.ceil(count / itemsPerPage);
+  // const pages = [...Array(numberOfPages).keys()];
 
   const handleCheckboxChange = (event, idx) => {
     const checked = event.target.value;
@@ -29,10 +30,10 @@ const ProductCategories = ({ categoriesId }) => {
     setCheckedCategory(checkedCategory === idx ? null : idx); // Toggle the selected category
   };
   const {data: Product = [], isLoading, refetch} = useQuery({
-    queryKey:["categorisData", categoresItem, categoresProduct, search],
+    queryKey:["categorisData", categoresItem, categoresProduct, search, currentPage],
     queryFn: async ()=>{
-            const {data} = await axiosCommon.get(`/categores/api/${categoriesId}?categoresItem=${categoresItem}&categoresProduct=${categoresProduct}&search=${search}`)
-            console.log(data)
+            const {data} = await axiosCommon.get(`/categores/api/${categoriesId}?categoresItem=${categoresItem}&categoresProduct=${categoresProduct}&search=${search}&page=${currentPage}`)
+            console.log(data, "this is data")
             return data
     }
   })
@@ -42,26 +43,8 @@ const ProductCategories = ({ categoriesId }) => {
     setCategoresItem(item)
     
   };
-  const handlePrevPage = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
 
-  const handleNextPage = () => {
-    if (currentPage < pages.length - 1) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-  useEffect(() => {
-    axiosCommon
-      .get(`/categores/api/count`)
-
-      .then((res) => {
-        setCount(res.data.count)
-      });
-  }, [currentPage, itemsPerPage]);
-  console.log(Product);
+  // console.log(Product);
   
   return (
     <div className='container mx-auto'>

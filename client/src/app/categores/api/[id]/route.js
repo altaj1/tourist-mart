@@ -8,11 +8,13 @@ export const GET = async (request, {params})=>{
     const categoresItem = searchParams.get("categoresItem");
     const categoresProduct = searchParams.get("categoresProduct");
     const searchText = searchParams.get("search");
+    const page = searchParams.get("page");
     const spotId = params.id
+              console.log( categoresItem, categoresProduct, searchText, spotId, page,"this is serch text")
    
     try {
         const query = {
-            spotId : spotId,
+            spotId : parseInt(spotId),
             item:{$regex:String(categoresItem)},
             category:{$regex: String(categoresProduct)},
             name:{ $regex: String(searchText), $options: 'i' }
@@ -20,11 +22,11 @@ export const GET = async (request, {params})=>{
         if (searchText && !categoresProduct) {
             const searchData= await productsCollection.find({
               name:{ $regex: String(searchText), $options: 'i' }}).toArray()
-              console.log(searchData, "this is serch text")
               return NextResponse.json({date:searchData})
         }
-
-
+        const respose = await productsCollection.find(query).skip(page * 12).limit(12).toArray()
+       return NextResponse.json({data:respose})
+    //    .skip(page * 12).limit(12)
     } catch (error) {
         console.log(error)
     }

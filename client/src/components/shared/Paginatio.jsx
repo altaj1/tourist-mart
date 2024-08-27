@@ -6,14 +6,14 @@ import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Paginatio = () => {
-    const [currentPage, setCurrentPage] = useState(0);
-    const [itemsPerPage, setItemsPerPage] = useState(12);
+    // const [currentPage, setCurrentPage] = useState(0);
+    // const [itemsPerPage, setItemsPerPage] = useState(12);
     const axiosCommon = useAxiosCommon();
     const [count, setCount] = useState(0);
-    const {pagination} = useSelector((state) => state)
-    console.log(pagination.value, "redux state")
+    const {pagination} = useSelector(state=> state)
+   // console.log(reduxData.value," redux text")
     const dispatch = useDispatch();
-    const numberOfPages = Math.ceil(count / itemsPerPage);
+    const numberOfPages = Math.ceil(count / 12);
     const pages = [...Array(numberOfPages).keys()];
     const handlePrevPage = () => {
         if (pagination.value > 0) {
@@ -37,7 +37,7 @@ const Paginatio = () => {
           .then((res) => {
             setCount(res.data.count)
           });
-      }, [pagination.value, itemsPerPage]);
+      }, [pagination.value]);
     return (
         <div className="pagination join flex items-center justify-center p-16">
         <button
