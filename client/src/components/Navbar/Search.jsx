@@ -1,15 +1,20 @@
+'use client'
 import { searchText } from "@/lib/store/features/searchText/searchTextSlice";
+import { useRouter } from "next/navigation";
+
 import React from "react";
 import { IoSearchSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 
 const Search = () => {
   const dispatch = useDispatch()
+  const router = useRouter();
   const handleSearchText = (e)=>{
     e.preventDefault()
     const text = e.target.searchText.value;
     // console.log(text, "thsi is text")
     dispatch(searchText(text))
+    router.push('/categores/1')
   }
   return (
     <form onSubmit={handleSearchText} action="">

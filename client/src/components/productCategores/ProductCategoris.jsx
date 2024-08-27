@@ -3,7 +3,8 @@ import useAxiosCommon from '@/lib/hooks/apiHooks/useAxiosCommon';
 import { spotCategories } from '@/lib/spotCategories/spotCategories';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
 
 const ProductCategories = ({ categoriesId }) => {
@@ -14,7 +15,12 @@ const ProductCategories = ({ categoriesId }) => {
   const [checkedCategory, setCheckedCategory] = useState(null);
   const [categoresProduct, SetCategoresProduct] = useState("");
   const [categoresItem, setCategoresItem] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(12);
+  const [count, setCount] = useState(0);
   const { subcategories } = spotCategories.find((spot) => spot.id == categoriesId);
+  const numberOfPages = Math.ceil(count / itemsPerPage);
+  const pages = [...Array(numberOfPages).keys()];
 
   const handleCheckboxChange = (event, idx) => {
     const checked = event.target.value;
@@ -35,10 +41,30 @@ const ProductCategories = ({ categoriesId }) => {
     setCategoresItem(item)
     
   };
+  const handlePrevPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  useEffect(() => {
+    axiosCommon
+      .get(`/categores/api/count`)
+
+      .then((res) => {
+        setCount(res.data.count)
+      });
+  }, [currentPage, itemsPerPage]);
   console.log(Product);
   
   return (
     <div className='container mx-auto'>
+    <div>  
       <div>
       <h1 className="text-xl font-semibold">Product Category</h1>
       {subcategories.map((category, idx) => (
@@ -70,7 +96,39 @@ const ProductCategories = ({ categoriesId }) => {
         </form>
       ))}
       </div>
-      
+      {/* product cart */}
+      <div></div>
+      </div>
+       {/* pagination */}
+       <div className="pagination join flex items-center justify-center p-16">
+        <button
+          className="flex items-center justify-center gap-1 mr-4"
+          onClick={handlePrevPage}
+        >
+          <GrLinkPrevious /> Prev
+        </button>
+        <div className="text-2xl space-x-6">
+          {pages.map((page) => (
+            <button
+              className={`${
+                currentPage == page
+                  ? "bg-[#5B8021] text-yellow-50 w-10 rounded-full"
+                  : ""
+              } `}
+              onClick={() => setCurrentPage(page)}
+              key={page}
+            >
+              {page + 1}
+            </button>
+          ))}
+        </div>
+        <button
+          className="flex items-center justify-center gap-1 ml-4"
+          onClick={handleNextPage}
+        >
+          Next <GrLinkNext />
+        </button>
+      </div>
     </div>
   );
 };

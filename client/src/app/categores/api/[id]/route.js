@@ -11,7 +11,13 @@ export const GET = async (request, {params})=>{
     const spotId = params.id
    
     try {
-        if (searchText && !spotId) {
+        const query = {
+            spotId : spotId,
+            item:{$regex:String(categoresItem)},
+            category:{$regex: String(categoresProduct)},
+            name:{ $regex: String(searchText), $options: 'i' }
+        }
+        if (searchText && !categoresProduct) {
             const searchData= await productsCollection.find({
               name:{ $regex: String(searchText), $options: 'i' }}).toArray()
               console.log(searchData, "this is serch text")
