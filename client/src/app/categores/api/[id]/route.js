@@ -9,23 +9,16 @@ export const GET = async (request, {params})=>{
     const categoresProduct = searchParams.get("categoresProduct");
     const searchText = searchParams.get("search");
     const spotId = params.id
+   
     try {
-        const spotResp = await productsCollection.find({
-            spotId:parseInt(spotId)}).toArray()
-        if (!categoresProduct) {
-            return NextResponse.json({spotResp});
+        if (searchText && !spotId) {
+            const searchData= await productsCollection.find({
+              name:{ $regex: String(searchText), $options: 'i' }}).toArray()
+              console.log(searchData, "this is serch text")
+              return NextResponse.json({date:searchData})
         }
-        if (categoresProduct) {
-            const resultCategorisProduct = spotResp.find(rs=>rs.category == categoresProduct);
-            if (!categoresItem) {
-                return NextResponse.json({resultCategorisProduct});
-            }
-            if (categoresItem) {
-                const requesItem = resultCategorisProduct.find(rs=>rs.category == categoresProduct);
-                return NextResponse.json({requesItem});
-            }
-            console.log(resultCategorisProduct)
-        }
+
+
     } catch (error) {
         console.log(error)
     }

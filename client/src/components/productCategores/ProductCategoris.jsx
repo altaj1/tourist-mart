@@ -39,7 +39,8 @@ const ProductCategories = ({ categoriesId }) => {
   
   return (
     <div className='container mx-auto'>
-        <h1 className="text-xl font-semibold">Product Category</h1>
+      <div>
+      <h1 className="text-xl font-semibold">Product Category</h1>
       {subcategories.map((category, idx) => (
         <form key={idx}>
           <input
@@ -68,6 +69,8 @@ const ProductCategories = ({ categoriesId }) => {
           </div>
         </form>
       ))}
+      </div>
+      
     </div>
   );
 };
