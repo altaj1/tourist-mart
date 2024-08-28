@@ -56,7 +56,7 @@ if (isLoading) {
       <div>
       <h1 className="text-xl font-semibold">Product Category</h1>
       {subcategories.map((category, idx) => (
-        <form key={idx} action=''>
+        <form key={idx} action="/submit" method="POST">
           <input
             type="checkbox"
             id={`checkbox-${idx}`}
@@ -87,7 +87,7 @@ if (isLoading) {
       {/* product cart */}
       <div className="lg:grid md:grid lg:grid-cols-4  md:grid-cols-2  gap-5 ">
         {
-          Products?.data.map((product)=>(<ProductCard product={product}></ProductCard>))
+          Products?.data.map((product)=>(<ProductCard key={product._id} product={product}></ProductCard>))
         }
       </div>
       </div>

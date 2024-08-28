@@ -1,57 +1,94 @@
-import Link from 'next/link';
-import React from 'react';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
 const ProductCard = ({ product }) => {
-    const {
-        coverImage,
-        currentPrice,
-        name,
-        price,
-        _id,
-        discount,
-        BrandName,
-        ratings,
-      } = product;
-    return (
-        <div className="relative hover:z-50 card hover:shadow-xl p-5  duration-100 transform hover:scale-y-105 ">
-        <figure className="h-60">
-          <img
-            className="h-60 w-full rounded-b-xl"
-            src={coverImage}
-            alt="product"
-          />
-        </figure>
-        <div className="flex  gap-1 mt-1 font-medium">
-          <p className="bg-[#FFD9D8] text-xs text-center py-1 px-1 rounded-sm">
-            BigSave
+  const {
+    coverImage,
+    currentPrice,
+    name,
+    price,
+    _id,
+    discount,
+    BrandName,
+    sold,
+    ratings,
+  } = product;
+  return (
+    <div className="relative hover:z-50 card hover:shadow-xl p-5  duration-100 transform hover:scale-y-105 ">
+      <figure className="h-60">
+        <Image
+          src={coverImage} // Use `spot.photo.src` here
+          alt="categories"
+          width={500} // Use `spot.photo.width` here
+          height={400} // Use `spot.photo.height` here
+          priority
+          className="h-60 w-full rounded-b-xl"
+        />
+      </figure>
+      <div className="flex  gap-1 mt-1 font-medium">
+        <p className="bg-[#FFD9D8] text-xs text-center py-1 px-1 rounded-sm">
+          BigSave
+        </p>
+        <p className="bg-[#FFE5C1] text-xs py-1 rounded-sm px-1">Brand</p>
+        <p className="text-sm ">{BrandName}</p>
+      </div>
+      <div className="">
+        <div className="h-26 pt-2">
+          <h2 className="font-semibold">{name}</h2> {/* rating */}
+          <div className="flex items-center gap-3 ">
+            <div className="rating rating-xs">
+              <input
+                type="radio"
+                name="rating-5"
+                className="mask mask-star-2 bg-orange-400"
+              />
+              <input
+                type="radio"
+                name="rating-5"
+                className="mask mask-star-2 bg-orange-400"
+                defaultChecked
+              />
+              <input
+                type="radio"
+                name="rating-5"
+                className="mask mask-star-2 bg-orange-400"
+              />
+              <input
+                type="radio"
+                name="rating-5"
+                className="mask mask-star-2 bg-orange-400"
+                defaultChecked
+              />
+              <input
+                type="radio"
+                name="rating-5"
+                className="mask mask-star-2 bg-orange-400"
+              />
+            </div>
+            <p className="text-sm font-">{sold ? sold : "78+"}sold</p>
+          </div>
+          <p className="">
+            <span className="text-xl font-medium">
+              BDT{parseFloat(currentPrice).toFixed()}
+            </span>{" "}
+            <span className="opacity-50 text-sm">BDT{price}</span>
           </p>
-          <p className="bg-[#FFE5C1] text-xs py-1 rounded-sm px-1">Brand</p>
-          <p className="text-sm ">{BrandName}</p>
         </div>
-        <div className="">
-         <div className="h-26 pt-2">
-         <h2 className="font-semibold">{name}</h2>
-          <div className="flex justify-between items-center">
-            {" "}
-           
-            <p className="">
-              <span className="text-xl font-medium">BDT{parseFloat(currentPrice).toFixed()}</span>{" "}
-              <span className="opacity-50 text-sm">BDT{price}</span>
-            </p>
-            <p className="text-sm">Ratings {ratings ? ratings : "No Ratings"}</p>
-          </div>
-         </div>
-          <div className=" flex items-center justify-between mt-1">
-            <p className=" rounded-r-xl px-2 badge-outline bg-red-600 text-white font-medium">
-              {discount}% off
-            </p>
-            <Link href={`/product-detail/${_id}`} className=" px-2  rounded-lg badge-outline bg-[#8dbe3f] hover:bg-[#5B8021] hover:text-white font-medium">
-              See preview
-            </Link >
-          </div>
+        <div className=" flex items-center justify-between mt-1">
+          <p className=" rounded-r-xl px-2 badge-outline bg-red-600 text-white font-medium">
+            {discount}% off
+          </p>
+          <Link
+            href={`/product-detail/${_id}`}
+            className=" px-2  rounded-lg badge-outline bg-[#8dbe3f] hover:bg-[#5B8021] hover:text-white font-medium"
+          >
+            See preview
+          </Link>
         </div>
       </div>
-    );
+    </div>
+  );
 };
 
 export default ProductCard;
