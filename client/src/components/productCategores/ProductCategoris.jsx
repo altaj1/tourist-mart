@@ -7,6 +7,8 @@ import React, { useEffect, useState } from 'react';
 import { GrLinkNext, GrLinkPrevious } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
 import Paginatio from '../shared/Paginatio';
+import LoadingSpinner from '../shared/LoadingSpinner';
+import ProductCard from '../shared/ProductCard';
 
 const ProductCategories = ({ categoriesId }) => {
   const reduxData = useSelector((state)=>state)
@@ -29,11 +31,11 @@ const ProductCategories = ({ categoriesId }) => {
      SetCategoresProduct(checked);
     setCheckedCategory(checkedCategory === idx ? null : idx); // Toggle the selected category
   };
-  const {data: Product = [], isLoading, refetch} = useQuery({
+  const {data: Products = [], isLoading, refetch} = useQuery({
     queryKey:["categorisData", categoresItem, categoresProduct, search, currentPage],
     queryFn: async ()=>{
             const {data} = await axiosCommon.get(`/categores/api/${categoriesId}?categoresItem=${categoresItem}&categoresProduct=${categoresProduct}&search=${search}&page=${currentPage}`)
-            console.log(data, "this is data")
+            // console.log(data, "this is data")
             return data
     }
   })
@@ -43,16 +45,18 @@ const ProductCategories = ({ categoriesId }) => {
     setCategoresItem(item)
     
   };
-
-  // console.log(Product);
+if (isLoading) {
+    return <LoadingSpinner></LoadingSpinner>
+}
+  console.log(Products);
   
   return (
-    <div className='container mx-auto'>
-    <div>  
+    <div className='container mx-auto mt-10'>
+    <div className="flex justify-between  gap-5">  
       <div>
       <h1 className="text-xl font-semibold">Product Category</h1>
       {subcategories.map((category, idx) => (
-        <form key={idx}>
+        <form key={idx} action=''>
           <input
             type="checkbox"
             id={`checkbox-${idx}`}
@@ -81,39 +85,15 @@ const ProductCategories = ({ categoriesId }) => {
       ))}
       </div>
       {/* product cart */}
-      <div></div>
+      <div className="lg:grid md:grid lg:grid-cols-4  md:grid-cols-2  gap-5 ">
+        {
+          Products?.data.map((product)=>(<ProductCard product={product}></ProductCard>))
+        }
+      </div>
       </div>
        {/* pagination */}
        <Paginatio></Paginatio>
-       {/* <div className="pagination join flex items-center justify-center p-16">
-        <button
-          className="flex items-center justify-center gap-1 mr-4"
-          onClick={handlePrevPage}
-        >
-          <GrLinkPrevious /> Prev
-        </button>
-        <div className="text-2xl space-x-6">
-          {pages.map((page) => (
-            <button
-              className={`${
-                currentPage == page
-                  ? "bg-[#5B8021] text-yellow-50 w-10 rounded-full"
-                  : ""
-              } `}
-              onClick={() => setCurrentPage(page)}
-              key={page}
-            >
-              {page + 1}
-            </button>
-          ))}
-        </div>
-        <button
-          className="flex items-center justify-center gap-1 ml-4"
-          onClick={handleNextPage}
-        >
-          Next <GrLinkNext />
-        </button>
-      </div> */}
+
     </div>
   );
 };
