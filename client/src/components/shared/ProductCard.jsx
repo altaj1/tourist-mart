@@ -1,8 +1,12 @@
+
+import { productId } from "@/lib/store/features/cart/cartSlice";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
+import { BsCartPlus } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch()
   const {
     coverImage,
     currentPrice,
@@ -14,6 +18,10 @@ const ProductCard = ({ product }) => {
     sold,
     ratings,
   } = product;
+  const handleAddToCart =(id)=>{
+    console.log(typeof id)
+    dispatch(productId(id))
+  }
   return (
     <div className="relative hover:z-50 card hover:shadow-xl p-5  duration-100 transform hover:scale-y-105 ">
       <figure className="h-60">
@@ -36,7 +44,8 @@ const ProductCard = ({ product }) => {
       <div className="">
         <div className="h-26 pt-2">
           <h2 className="font-semibold">{name}</h2> {/* rating */}
-          <div className="flex items-center gap-3 ">
+        <div className="flex  items-center justify-between">
+          <div>  <div className="flex items-center gap-3 ">
             <div className="rating rating-xs">
               <input
                 type="radio"
@@ -73,8 +82,13 @@ const ProductCard = ({ product }) => {
               BDT{parseFloat(currentPrice).toFixed()}
             </span>{" "}
             <span className="opacity-50 text-sm">BDT{price}</span>
-          </p>
+          </p></div>
+          <button onClick={()=>handleAddToCart(_id)} className="text-4xl mr-8 hover:text-[#90C044]">
+          <BsCartPlus />
+          </button>
         </div>
+        </div>
+        {/* end button */}
         <div className=" flex items-center justify-between mt-1">
           <p className=" rounded-r-xl px-2 badge-outline bg-red-600 text-white font-medium">
             {discount}% off

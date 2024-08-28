@@ -8,13 +8,13 @@ import { useDispatch } from "react-redux";
 
 const Search = () => {
   const dispatch = useDispatch()
-  const router = useRouter();
+
   const handleSearchText = (e)=>{
     e.preventDefault()
     const text = e.target.searchText.value;
     // console.log(text, "thsi is text")
     dispatch(searchText(text))
-    router.push('/categores/1')
+    
   }
   return (
     <form onSubmit={handleSearchText} action="">
