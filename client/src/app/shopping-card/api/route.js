@@ -5,16 +5,19 @@ import { NextResponse } from "next/server"
 export const GET = async (request, {params})=>{
     const db = await connectDB();
     const productsCollection = db.collection("products")
+    const soppingCartCollection = db.collection("soppingCart")
     const {searchParams} = new URL (request.url);
     const mainProductId = searchParams.get('mainProductId')
     const addEmail = searchParams.get('addEmail')
+    // console.log(ObjectId.isValid(mainProductId))
     if (!addEmail){
         return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
     }
     const prevProduct = await productsCollection.findOne({_id:new ObjectId(mainProductId)});
     delete prevProduct._id;
-    console.log(prevProduct,"thsi is sopping cart", addEmail)
-
-
-    return NextResponse.json({data: "not fount"})
+    const respose = await soppingCartCollection.insertOne({addEmail: addEmail,mainProductId:mainProductId, ...prevProduct})
+// console.log(respose)
+    const countDoc = await soppingCartCollection.countDocuments({addEmail: addEmail})
+  
+    return NextResponse.json({data:countDoc})
 }
