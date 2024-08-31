@@ -10,12 +10,12 @@ export const GET = async (request, {params})=>{
     const mainProductId = searchParams.get('mainProductId')
     const addEmail = searchParams.get('addEmail')
     // console.log(ObjectId.isValid(mainProductId))
-    if (!addEmail){
-        return NextResponse.json({ error: 'Invalid data' }, { status: 400 });
+    if (addEmail && mainProductId){
+        const prevProduct = await productsCollection.findOne({_id:new ObjectId(String(mainProductId))});
+        delete prevProduct._id;
+        const respose = await soppingCartCollection.insertOne({addEmail: addEmail,mainProductId:mainProductId, ...prevProduct})
     }
-    const prevProduct = await productsCollection.findOne({_id:new ObjectId(mainProductId)});
-    delete prevProduct._id;
-    const respose = await soppingCartCollection.insertOne({addEmail: addEmail,mainProductId:mainProductId, ...prevProduct})
+   
 // console.log(respose)
     const countDoc = await soppingCartCollection.countDocuments({addEmail: addEmail})
   
