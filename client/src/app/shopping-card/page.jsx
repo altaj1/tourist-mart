@@ -1,5 +1,6 @@
 "use client";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
+import Summary from "@/components/shared/summary";
 import SoppingProductCart from "@/components/soppingProductCart/SoppingProductCart";
 import useAxiosSecure from "@/lib/hooks/apiHooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -85,7 +86,10 @@ const page = () => {
           ))}
         </div>
         {/* Summary */}
-        <div> Summary</div>
+        <div>
+  
+          <Summary buyProduct={buyProduct} ></Summary>
+        </div>
       </div>
       {/* More to love */}
       <div></div>

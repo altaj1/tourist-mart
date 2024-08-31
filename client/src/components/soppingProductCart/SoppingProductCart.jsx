@@ -20,11 +20,14 @@ const SoppingProductCart = ({ product, buyProduct, setBuyProduct,
       };
       delete buyData._id;  
       setBuyProduct([...buyProduct,buyData]);
+      localStorage.setItem("product", JSON.stringify([...buyProduct, buyData]))
     }
      else {
-      setBuyProduct(
-        buyProduct.filter((item) => item.productCartId !== product._id)
+      const updatedProducts = buyProduct.filter(
+        (item) => item.productCartId !== product._id
       );
+      setBuyProduct(updatedProducts);
+      localStorage.setItem("product", JSON.stringify(updatedProducts));
     }
   };
   return (
