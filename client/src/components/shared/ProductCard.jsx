@@ -5,6 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { BsCartPlus } from "react-icons/bs";
 import { useDispatch } from "react-redux";
+import PreviewButton from "./PreviewButton";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch()
   const {
@@ -93,12 +94,13 @@ const ProductCard = ({ product }) => {
           <p className=" rounded-r-xl px-2 badge-outline bg-red-600 text-white font-medium">
             {discount}% off
           </p>
-          <Link
+          <PreviewButton id = {_id}></PreviewButton>
+          {/* <Link
             href={`/product-detail/${_id}`}
             className=" px-2  rounded-lg badge-outline bg-[#8dbe3f] hover:bg-[#5B8021] hover:text-white font-medium"
           >
             See preview
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

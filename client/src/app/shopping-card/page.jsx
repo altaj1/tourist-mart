@@ -8,12 +8,35 @@ import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 const page = () => {
+    const [buyProduct, setBuyProduct] = useState([]);
     const [userLoading, setUserLoading] = useState(true); 
     const axiosSecure = useAxiosSecure()
     const { data: session, status }= useSession() 
     const router = useRouter();
-console.log(session?.user.email)
-    const {data: cartsData=[], isLoading} = useQuery({
+
+    const handelCheckOut = (product, isChecked) => {
+        // e.preventDefault()
+       
+        if (isChecked) {
+          const buyData = {
+            ...product,
+            productCartId: product._id,
+            buyProductCount: buyProductCount,
+          };
+          delete buyData._id;  
+          setBuyProduct([...buyProduct,buyData]);
+        }
+         else {
+          setBuyProduct(
+            buyProduct.filter((item) => item.productCartId !== product._id)
+          );
+        }
+      };
+    const handelProductDelet = (id) =>{
+        console.log(id)
+    }
+
+    const {data: cartsData=[], isLoading, refetch} = useQuery({
         queryKey:["soppingCartProduct", session?.user.email],
         queryFn:async () =>{
             const {data} = await axiosSecure.get(`/shopping-card/api/${session?.user.email}`)
@@ -36,7 +59,7 @@ console.log(session?.user.email)
     if (isLoading) {
         return <LoadingSpinner></LoadingSpinner>
     }
-console.log(cartsData)
+// console.log(cartsData)
     return (
         <div className='mx-auto container'>
             {/* thsi is shopping cart pages */}
@@ -44,7 +67,7 @@ console.log(cartsData)
                 {/* Cart */}
                 <div className='w-[70%]'>
                    {
-                    cartsData?.map((product, idx)=><SoppingProductCart key={product._id} product={product}></SoppingProductCart>)
+                    cartsData?.map((product, idx)=><SoppingProductCart key={product._id} product={product} cartsData={cartsData} buyProduct ={buyProduct} setBuyProduct = {setBuyProduct} handelCheckOut={handelCheckOut} handelProductDelet={handelProductDelet} refetch={refetch}></SoppingProductCart>)
                    }
                 </div>
                 {/* Summary */}
