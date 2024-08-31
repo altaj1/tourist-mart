@@ -7,11 +7,26 @@ import PreviewButton from "../shared/PreviewButton";
 const SoppingProductCart = ({ product, buyProduct, setBuyProduct,  
   handelProductDelet, 
 
-  refetch,
-  handelCheckOut }) => {
+  refetch,}) => {
   const [buyProductCount, setBuyProductCount] = useState(1);
   const { coverImage, currentPrice, name, price, mainProductId, _id } = product;
-
+  const handelCheckOut = (product, isChecked) => {
+   
+    if (isChecked) {
+      const buyData = {
+        ...product,
+        productCartId: product._id,
+        buyProductCount: buyProductCount,
+      };
+      delete buyData._id;  
+      setBuyProduct([...buyProduct,buyData]);
+    }
+     else {
+      setBuyProduct(
+        buyProduct.filter((item) => item.productCartId !== product._id)
+      );
+    }
+  };
   return (
     <div className="flex space-x-5">
       <input
