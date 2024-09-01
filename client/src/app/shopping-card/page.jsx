@@ -66,7 +66,7 @@ const page = () => {
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-  console.log(buyProduct)
+
   return (
     <div className="mx-auto container">
       {/* thsi is shopping cart pages */}
