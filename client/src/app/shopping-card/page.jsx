@@ -87,7 +87,6 @@ const page = () => {
         </div>
         {/* Summary */}
         <div>
-  
           <Summary buyProduct={buyProduct} ></Summary>
         </div>
       </div>

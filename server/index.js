@@ -40,3 +40,10 @@ app.get('/hello', (req, res) => {
 })
 
 app.listen(3005)
+
+    // "builds": [
+    //   {
+    //     "src": "index.js",
+    //     "use": "@vercel/node"
+    //   }
+    // ],
