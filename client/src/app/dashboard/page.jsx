@@ -15,7 +15,7 @@ const DashboardPage = () => {
     const [toggle, setToggle] = useState(true)
     
     const {role, isLoading} = useRole()
-       console.log(role)
+       console.log(role, "this is role")
   //   console.log(role, isLoading)
     // Sidebar Responsive Handler
     const handleToggle = () => {

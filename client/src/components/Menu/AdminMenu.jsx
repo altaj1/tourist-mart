@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import MenuItem from './MenuItem';
 import { FaUserCog } from 'react-icons/fa';
 import { BsFillMotherboardFill } from "react-icons/bs";
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import LoadingSpinner from '../shared/LoadingSpinner';
+
 
 const AdminMenu = () => {
     const [loading, setLoading] = useState(true);

@@ -10,7 +10,23 @@ const handler = NextAuth({
       strategy: "jwt",
       maxAge: 30 * 24 * 60 * 60,
       rolling: false, 
-    },   
+    }, 
+    jwt: {
+      async encode({ token, secret }) {
+        // Encode token using jsonwebtoken
+        const encodedToken = jwt.sign(token, secret);
+        return encodedToken;
+      },
+      async decode({ token, secret }) {
+        // Decode token using jsonwebtoken
+        try {
+          const decodedToken = jwt.verify(token, secret);
+          return decodedToken;
+        } catch (error) {
+          return null;
+        }
+      }
+    },
     providers: [
       CredentialsProvider({
         credentials: {

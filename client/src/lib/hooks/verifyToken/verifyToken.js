@@ -6,7 +6,8 @@ const db = await connectDB();
 const usersCollection = db.collection("users")
  const tokenVerify =async (req) =>{
     const cookieStore = cookies()
-    const theme =  cookieStore.get('token')
+    const theme =  cookieStore.get('next-auth.session-token')
+    console.log(theme,"this is thim")
     if (!theme) {
         return NextResponse.json({ statusText: "Something Went Wrong" }, {status:401});
       }
