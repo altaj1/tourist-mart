@@ -22,7 +22,7 @@ app.use(cookieParser())
 // console.log(process.env.ACCESS_TOKEN_SECRET)
 app.post('/jwt', async (req, res) => {
   const email = req.body
-  // console.log(email)
+
   const token = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: '365d',
   })
