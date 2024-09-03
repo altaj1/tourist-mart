@@ -19,7 +19,7 @@ const cookieOptions = {
 app.use(cors(corsOptions)) 
 app.use(express.json())
 app.use(cookieParser())
-// console.log(process.env.ACCESS_TOKEN_SECRET)
+
 app.post('/jwt', async (req, res) => {
   const email = req.body
 
