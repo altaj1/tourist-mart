@@ -14,7 +14,7 @@ const AdminMenu = () => {
     const router = useRouter();
     useEffect(() => {
         if (session.data?.user?.role) {
-            setLoading(false); // Stop loading if the role exists
+            setLoading(false); 
           }
         
       }, [session?.data?.user]);
