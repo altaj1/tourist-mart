@@ -13,7 +13,7 @@ const usersCollection = db.collection("users")
       }
       try {
         const decoded = jwt.verify(theme.value, process.env.NEXT_PUBLIC_ACCESS_TOKEN_SECRET);
-        // console.log(decoded)
+        console.log(decoded)
     return decoded; 
       } catch (err) {
         console.error(err);
