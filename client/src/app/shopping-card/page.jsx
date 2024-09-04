@@ -10,6 +10,7 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const page = () => {
+  const [summary, setSummary] = useState([]);
   const [buyProduct, setBuyProduct] = useState([]);
   const [userLoading, setUserLoading] = useState(true);
   const axiosSecure = useAxiosSecure();
@@ -51,7 +52,14 @@ const page = () => {
     },
     enabled: !!session?.user.email,
   });
-
+ useEffect(()=>{
+  const storeSummary = localStorage.getItem('product')
+  if (storeSummary) {
+  setSummary(JSON.parse(storeSummary))
+    
+  }
+  // console.log(storeSummary)
+ },[buyProduct])
   useEffect(() => {
     if (status === "loading") {
       return;
@@ -66,7 +74,7 @@ const page = () => {
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-
+console.log(summary)
   return (
     <div className="mx-auto container">
       {/* thsi is shopping cart pages */}
@@ -87,7 +95,8 @@ const page = () => {
         </div>
         {/* Summary */}
         <div>
-          <Summary buyProduct={buyProduct} ></Summary>
+          <p>{summary.length}</p>
+          <Summary ></Summary>
         </div>
       </div>
       {/* More to love */}
