@@ -95,8 +95,11 @@ console.log(summary)
         </div>
         {/* Summary */}
         <div>
-          <p>{summary.length}</p>
-          <Summary ></Summary>
+        <h1 className="text-2xl font-semibold">Summary</h1>
+          {
+            summary.map(pd=>( <Summary key={pd._id} pd={pd} summary={summary}></Summary>))
+          }
+        
         </div>
       </div>
       {/* More to love */}

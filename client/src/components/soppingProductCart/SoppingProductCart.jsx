@@ -8,6 +8,7 @@ const SoppingProductCart = ({ product, buyProduct, setBuyProduct,
   handelProductDelet, 
 
   refetch,}) => {
+  const [summary, setSummary] = useState([]);
   const [buyProductCount, setBuyProductCount] = useState(1);
   const { coverImage, currentPrice, name, price, mainProductId, _id } = product;
   const handelCheckOut = (product, isChecked) => {
@@ -32,9 +33,25 @@ const SoppingProductCart = ({ product, buyProduct, setBuyProduct,
       localStorage.setItem("product", JSON.stringify(updatedProducts));
     }
   };
+  
+    //  useEffect(()=>{
+    //       const storeSummary = localStorage.getItem('product')
+    //       if (storeSummary) {
+    //       setSummary(JSON.parse(storeSummary))
+            
+    //       }
+    //       // console.log(storeSummary)
+    //      },[buyProduct])
+        //  const match = summary.filter(s=>{
+        //   console.log(s.productCartId, product._id)
+        //   s.productCartId === product._id
+        //  })
+        //  console.log(product, summary)
   return (
     <div className="flex space-x-5">
       <input
+  
+      // checked= {summary.fill(s=>s._id === product._id)}
         type="checkbox"
         name=""
         value={product._id}
@@ -67,8 +84,8 @@ const SoppingProductCart = ({ product, buyProduct, setBuyProduct,
           <div className="flex flex-col items-center ">
             <div className="flex gap-2 items-center text-lg font-semibold">
               <button
-                disabled={buyProductCount === 1}
-                onClick={() => setBuyProductCount(buyProduct - 1)}
+                disabled={buyProductCount == 1}
+                onClick={() => setBuyProductCount(buyProductCount - 1)}
               >
                 <FiMinus />
               </button>

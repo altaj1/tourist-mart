@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Summary = () => {
+const Summary = ({pd, summary}) => {
     return (
         <div>
-            <h1>Summary</h1>
+            <p>Subtotal({})</p>
         </div>
     );
 };
