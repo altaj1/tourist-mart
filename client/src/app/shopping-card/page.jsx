@@ -1,6 +1,7 @@
 "use client";
 import LoadingSpinner from "@/components/shared/LoadingSpinner";
-import Summary from "@/components/shared/summary";
+import Summary from "@/components/shared/Summary";
+
 import SoppingProductCart from "@/components/soppingProductCart/SoppingProductCart";
 import useAxiosSecure from "@/lib/hooks/apiHooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -16,26 +17,24 @@ const page = () => {
   const axiosSecure = useAxiosSecure();
   const { data: session, status } = useSession();
   const router = useRouter();
-  
-  const handelProductDelet =async (id) => {
+
+  const handelProductDelet = async (id) => {
     console.log(id);
     try {
-        const resp = await axiosSecure.delete(`/shopping-card/api/delete/${id}`)
-        if (resp?.data?.deletedCount> 0) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Your work has been saved",
-                showConfirmButton: false,
-                timer: 1500
-              });
-            refetch()
-        }
-     
+      const resp = await axiosSecure.delete(`/shopping-card/api/delete/${id}`);
+      if (resp?.data?.deletedCount > 0) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+      }
     } catch (error) {
-        console.log(error)
+      console.log(error);
     }
-
   };
 
   const {
@@ -52,14 +51,13 @@ const page = () => {
     },
     enabled: !!session?.user.email,
   });
- useEffect(()=>{
-  const storeSummary = localStorage.getItem('product')
-  if (storeSummary) {
-  setSummary(JSON.parse(storeSummary))
-    
-  }
-  // console.log(storeSummary)
- },[buyProduct])
+  useEffect(() => {
+    const storeSummary = localStorage.getItem("product");
+    if (storeSummary) {
+      setSummary(JSON.parse(storeSummary));
+    }
+    // console.log(storeSummary)
+  }, [buyProduct]);
   useEffect(() => {
     if (status === "loading") {
       return;
@@ -74,9 +72,10 @@ const page = () => {
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>;
   }
-console.log(summary)
+  // console.log(summary);
   return (
-    <div className="mx-auto container">
+    <div className="bg-[#F4F4F4] min-h-svh">
+       <div className="mx-auto container">
       {/* thsi is shopping cart pages */}
       <div className="flex">
         {/* Cart */}
@@ -88,23 +87,18 @@ console.log(summary)
               cartsData={cartsData}
               buyProduct={buyProduct}
               setBuyProduct={setBuyProduct}
-              
               handelProductDelet={handelProductDelet}
             ></SoppingProductCart>
           ))}
         </div>
         {/* Summary */}
-        <div>
-        <h1 className="text-2xl font-semibold">Summary</h1>
-          {
-            summary.map(pd=>( <Summary key={pd._id} pd={pd} summary={summary}></Summary>))
-          }
-        
-        </div>
+        <Summary summary={summary}></Summary>
       </div>
       {/* More to love */}
       <div></div>
     </div>
+    </div>
+   
   );
 };
 
