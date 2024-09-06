@@ -48,7 +48,7 @@ const SoppingProductCart = ({ product, buyProduct, setBuyProduct,
         //  })
         //  console.log(product, summary)
   return (
-    <div className="flex space-x-5">
+    <div className="flex space-x-5 bg-[#FFFFFF] p-5 mt-3 shadow-lg">
       <input
   
       // checked= {summary.fill(s=>s._id === product._id)}
