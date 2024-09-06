@@ -1,16 +1,19 @@
 import { Dai_Banna_SIL } from "next/font/google";
 import Link from "next/link";
 import React from "react";
+import LoadingSpinner from "./LoadingSpinner";
 
-const Summary = ({ summary }) => {
+const Summary = ({ summary, isLoading }) => {
   const subtotal = summary?.reduce(
     (acc, pd) => parseInt(acc) + parseInt(pd.price),
     0
   );
-  console.log(summary);
+  if (isLoading) {
+    return <LoadingSpinner></LoadingSpinner>
+  }
   return (
-    <div className="w-[30%] pl-16 pr-16 space-y-2 shadow-lg bg-[#FFFFFF] mt-3">
-      <h1 className="text-2xl font-semibold">Summary</h1>
+    <div className="lg:w-[30%] md:w-[30%] lg:pl-16 lg:pr-16 pl-5 pr-5 space-y-2 shadow-lg bg-[#FFFFFF] mt-3 ">
+      <h1 className="text-2xl mt-4 font-semibold">Summary</h1>
       <div>
         {summary?.map((pd) => (
           <div className="mt-3">

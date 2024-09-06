@@ -77,9 +77,9 @@ const page = () => {
     <div className="bg-[#F4F4F4] min-h-svh">
        <div className="mx-auto container">
       {/* thsi is shopping cart pages */}
-      <div className="flex gap-5">
+      <div className="lg:flex md:flex gap-5">
         {/* Cart */}
-        <div className="w-[70%]">
+        <div className="lg:w-[70%]">
           {cartsData?.map((product, idx) => (
             <SoppingProductCart
               key={product._id}
