@@ -3,6 +3,7 @@ import LoadingSpinner from '@/components/shared/LoadingSpinner';
 import useAxiosSecure, { axiosSecure } from '@/lib/hooks/apiHooks/useAxiosSecure';
 import { productId } from '@/lib/store/features/cart/cartSlice';
 import { useQuery } from '@tanstack/react-query';
+import Link from 'next/link';
 import React from 'react';
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
@@ -113,7 +114,7 @@ const page = ({params}) => {
             </span>
           </p>
           <div className="space-x-10">
-              <button className="px-8 py-3 bg-[#8DBE3F] font-semibold hover:bg-[#5B8021] hover:text-white">Buy Now</button>
+              <Link href={`/checkout/${_id}`} className="px-8 py-3 bg-[#8DBE3F] font-semibold hover:bg-[#5B8021] hover:text-white">Buy Now</Link>
               <button onClick={()=>handleAddToCart(_id)} className="px-6 py-3 bg-[#5B8021] font-semibold hover:bg-[#8DBE3F] hover:text-gray-800 text-white">Add to Cart</button>
           </div>
         </div>

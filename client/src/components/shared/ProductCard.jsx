@@ -95,12 +95,7 @@ const ProductCard = ({ product }) => {
             {discount}% off
           </p>
           <PreviewButton id = {_id}></PreviewButton>
-          {/* <Link
-            href={`/product-detail/${_id}`}
-            className=" px-2  rounded-lg badge-outline bg-[#8dbe3f] hover:bg-[#5B8021] hover:text-white font-medium"
-          >
-            See preview
-          </Link> */}
+      
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ const Summary = ({ summary, isLoading }) => {
   );
   const isDisabled = summary.length === 0;
   const productIds = summary.map(pd => pd.mainProductId)
-  console.log( productIds)
+  // console.log( productIds)
   if (isLoading) {
     return <LoadingSpinner></LoadingSpinner>
   }
@@ -33,7 +33,7 @@ const Summary = ({ summary, isLoading }) => {
       </p>
       <p className=" pt-5 text-center">
       <Link
-          href={isDisabled ? "#" : `/checkout?productIds=${productIds}`}
+          href={isDisabled ? "#" : `/checkout/${productIds}`}
           className={`text-gray-800 py-3 px-10 lg:px-16 transition-all duration-300 ease-in-out ${
             isDisabled
               ? "bg-gray-300 cursor-not-allowed"
