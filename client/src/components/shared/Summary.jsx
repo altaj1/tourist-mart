@@ -7,6 +7,7 @@ const Summary = ({ summary }) => {
     (acc, pd) => parseInt(acc) + parseInt(pd.price),
     0
   );
+  console.log(summary)
   return (
     <div className="w-[30%] pl-16 pr-16 space-y-2 shadow-lg bg-[#FFFFFF]">
       <h1 className="text-2xl font-semibold">Summary</h1>

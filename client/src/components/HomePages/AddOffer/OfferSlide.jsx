@@ -32,10 +32,10 @@ const OfferSlide = () => {
                 priority
                 height={300}
                 width={400}
-                className=" h-72"
+                
                 alt="sopping"
                 src={pd.images}
-                
+                className=" h-72"
               ></Image>
              </div>
              <div className="flex items-center justify-around pt-3">
