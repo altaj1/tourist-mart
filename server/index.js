@@ -41,12 +41,6 @@ app.get('/hello', (req, res) => {
 
 app.listen(3005)
 
-    // "builds": [
-    //   {
-    //     "src": "index.js",
-    //     "use": "@vercel/node"
-    //   }
-    // ],
   
 const array = [1, 1, 2, 3, 4, 5, 5, 6, 7, 8, 9];
 const dubul = []
